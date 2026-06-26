@@ -1,0 +1,2407 @@
+@font-face {
+  font-family: "FriendlyFont";
+  src: url("/web/20230420162531im_/https://game.limewire.com/fonts/FriendlyFont.eot");
+  src: url("/web/20230420162531im_/https://game.limewire.com/fonts/FriendlyFont.eot") format("embedded-opentype"), url("/web/20230420162531im_/https://game.limewire.com/fonts/FriendlyFont.woff") format("woff"), url("/web/20230420162531im_/https://game.limewire.com/fonts/FriendlyFont.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+/* animations */
+@-webkit-keyframes pace-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes pace-spinner {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes pace-spinner {
+  0% {
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-ms-keyframes pace-spinner {
+  0% {
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes pace-spinner {
+  0% {
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes bounce_x {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(2.5px);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    color: #ffa500;
+  }
+  25% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    color: black;
+  }
+  50% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    color: black;
+  }
+  75% {
+    -webkit-transform: rotate(540deg);
+    transform: rotate(540deg);
+    color: black;
+  }
+  100% {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+    color: black;
+  }
+}
+@keyframes spinback {
+  0% {
+    -webkit-transform: rotate(181deg);
+    transform: rotate(181deg);
+    color: #ffa500;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    color: black;
+  }
+}
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-7.5px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulsating {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pulsating-but-visible {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@keyframes pulsating-halfway {
+  0% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+/* basics */
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline
+}
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%
+}
+a img, fieldset, img {
+  border: none
+}
+input[type=email], input[type=password], input[type=tel], input[type=text], textarea {
+  -webkit-appearance: none;
+  box-shadow: none
+}
+button, input[type=submit] {
+  cursor: pointer
+}
+button::-moz-focus-inner, input[type=submit]::-moz-focus-inner {
+  padding: 0;
+  border: 0
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #777e90;
+  opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #777e90;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #777e90;
+}
+button {
+  background: 0 0
+}
+textarea {
+  overflow: auto
+}
+button, input {
+  margin: 0;
+  padding: 0;
+  border: 0
+}
+a, a:focus, button, div, h1, h2, h3, h4, h5, h6, input, select, span, textarea {
+  outline: 0
+}
+a {
+  text-decoration: none;
+}
+ol, ul {
+  list-style-type: none
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%
+}
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+*, :after, :before {
+  box-sizing: inherit
+}
+input.error {
+  background: #fce3e4 !important;
+  box-shadow: inset 0 0 0 1px #f3b9bb !important;
+}
+img, svg {
+  vertical-align: middle
+}
+/* PAGE BASICS */
+.desktop {
+  min-width: 360px;
+  font-family: Tahoma;
+  font-size: 14px;
+  line-height: normal;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000000;
+  /*max-width: 1600px;*/
+  margin: 0 auto;
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_bliss.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.desktop .window {
+  display: block;
+  width: 1050px;
+  height: 740px;
+  background: #2d56b1;
+  margin: 0 auto;
+  margin-top: 25px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  box-shadow: 0 7px 14px 0 rgba(60, 66, 87, .1), 0 3px 6px 0 rgba(0, 0, 0, .1);
+  overflow: hidden;
+  border: 1.5px solid #2d56b1;
+}
+.desktop .window.locked {
+  filter: grayscale(100%);
+  pointer-events: none;
+  cursor: default
+}
+.desktop .window .window_header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 35px;
+  background: linear-gradient(to top, #2d56b1 10%, #2d56b1 30%, #3263bc 40%, #3673c7 50%, #3673c7 60%, #3980d2 70%, #619de8 80%, #6eade9 85%, #83bcec 90%, #8ec4ef 100%);
+  color: #fff;
+  padding: 0 5px;
+}
+.desktop .window .window_header .title {
+  font-size: 13px;
+}
+.desktop .window .window_header .title span {
+  text-shadow: 1px 1px 1px #000;
+  position: relative;
+  top: 10px;
+  padding-left: 22px;
+}
+.desktop .window .window_header .title span:before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/old_limewire_icon.png);
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/xp_limewire_icon.svg");
+  background-size: contain;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: -1px;
+}
+.desktop .window.caught_virus .window_header .title span:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/xp_warning_icon.png");
+  background-size: contain;
+}
+.desktop .window .window_header .buttons {
+  padding-top: 7px;
+  cursor: not-allowed;
+}
+.desktop .window .window_header .buttons a {
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  background: #000;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: 0 1px 1px 0 rgba(60, 66, 87, .5), 0 1px 2px 0 rgba(0, 0, 0, .5);
+  cursor: not-allowed;
+}
+.desktop .window .window_header .buttons a.minimize {
+  background: rgba(255, 255, 255, .1) url(/web/20230420162531im_/https://game.limewire.com/img/xp_icon_minimize.svg);
+  opacity: 1;
+  background-size: 13px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.desktop .window .window_header .buttons a.fullscreen {
+  background: rgba(255, 255, 255, .1) url("/web/20230420162531im_/https://game.limewire.com/img/xp_icon_fullscreen.svg");
+  opacity: 1;
+  background-size: 13px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.desktop .window .window_header .buttons a.close {
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/xp_icon_close.svg), linear-gradient(to top, #f6a994 10%, #f47866 30%, #f26c4a 40%, #e85338 50%, #cc4f32 60%, #dc481c 70%, #e85338 80%, #d66d58 90%, #d66d58 100%);
+  opacity: 1;
+  background-size: 13px, cover;
+  background-position: center, center;
+  background-repeat: no-repeat;
+}
+.desktop .window .content {
+  width: 1043px;
+  height: 700px;
+  background: #d7d6d6;
+  margin: 0 auto;
+  /* border-right: 2px solid #2d56b1; */
+  /* border-left: 2px solid #2d56b1; */
+  /* border-bottom: 38px solid #2d56b1; */
+  box-shadow: 0 3px 6px 0 rgba(60, 66, 87, .5), 0 3px 6px 0 rgba(0, 0, 0, .3);
+}
+.desktop .window .content .top_navigation {
+  width: 100%;
+  height: 30px;
+  box-shadow: 0 1px 1px 0 rgba(60, 66, 87, .5), 0 1px 2px 0 rgba(0, 0, 0, .5);
+  padding: 0 10px;
+  position: relative;
+}
+.desktop .window .content .top_navigation > div {
+  display: inline-block;
+  cursor: not-allowed;
+}
+.desktop .window .content .top_navigation a, .desktop .window .content .top_navigation span.logged_in_as {
+  color: #000;
+  line-height: 32px;
+  font-size: 11px;
+  margin-right: -4px;
+  padding-right: 18px;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+.desktop .window .content .top_navigation a:not(.logout) {
+  /* pointer-events: none; */
+  cursor: not-allowed;
+}
+.desktop .window .content .top_navigation span.logged_in_as {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+  padding: 0;
+}
+.desktop .window .content .top_navigation span.logged_in_as a {
+  margin: 0;
+  text-decoration: underline;
+  color: #01934a;
+  padding: 0;
+}
+.desktop .window .content .top_navigation a .underline {
+  text-decoration: underline;
+}
+.desktop .window .content .top_navigation_tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 0px 5px;
+}
+.desktop .window .content .top_navigation_tabs .tabs {
+  padding-top: 8px;
+  display: flex;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab {
+  color: #000;
+  font-size: 11px;
+  margin-right: 0px;
+  display: inline-block;
+  position: relative;
+  height: 31px;
+  width: fit-content;
+  box-shadow: 0 1px 3px 0 rgba(60, 66, 87, .5), 0 1px 2px 0 rgba(0, 0, 0, .25);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  text-align: center;
+  padding-top: 8px;
+  padding-left: 35px;
+  padding-right: 10px;
+  cursor: pointer;
+  margin-right: 1px;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.current:after {
+  background-color: #d7d6d6;
+  height: 2px;
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0;
+  z-index: 5;
+  width: 96.5px;
+  border-right: 1px solid #c6c6c7;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.leaderboard.current:after {
+  width: 148px;
+  left: 0;
+  border-right: 1px solid #c9c8ca;
+  border-left: 1px solid #c9c8ca;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.challenges.current:after {
+  width: 191.5px;
+  left: 0;
+  border-right: 1px solid #c9c8ca;
+  border-left: 1px solid #c9c8ca;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.faq.current:after {
+  width: 64.5px;
+  left: 0;
+  border-right: 0px solid #c9c8ca;
+  border-left: 1px solid #c9c8ca;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.search:before {
+  content: '';
+  width: 26px;
+  height: 26px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_loupe.png");
+  background-size: contain;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  top: 2px;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.faq:before {
+  content: '';
+  width: 23px;
+  height: 23px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/xp_icon_faq_2.png");
+  background-size: contain;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  opacity: 0.75;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.monitor:before {
+  content: '';
+  width: 23px;
+  height: 23px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_monitor.png");
+  background-size: contain;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  top: 4px;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.challenges:before {
+  content: '';
+  width: 23px;
+  height: 23px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/xp_icon_challenges_2.png");
+  background-size: contain;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  top: 4px;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.library:before {
+  content: '';
+  width: 23px;
+  height: 23px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_files.png");
+  background-size: contain;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  top: 4px;
+}
+.desktop .window .content .top_navigation_tabs .tabs .tab.leaderboard:before {
+  content: '';
+  width: 23px;
+  height: 23px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/windows_star.png");
+  background-size: contain;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  top: 4px;
+}
+.desktop .window .content .top_navigation_tabs .right_logo {}
+.desktop .window .content .top_navigation_tabs .right_logo img {
+  height: 28px;
+  margin-right: 5px;
+  position: relative;
+  top: 0;
+}
+.desktop .window .content .main_layer {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #d7d6d6;
+  min-height: 600px;
+  box-shadow: 0 0px 1px 0 rgba(60, 66, 87, .0), 0 -1px 1px 0 rgb(0 0 0 / 16%);
+  z-index: 0;
+  position: relative;
+}
+.desktop .window .content .main_layer {
+  color: #000;
+  font-size: 11px;
+}
+.desktop .window .content .main_layer .split {
+  display: flex;
+  align-items: flex-start;
+  height: 591px;
+  justify-content: space-between; /* color: #000; */ /* font-size: 12px; */
+}
+.desktop .window .content .main_layer .split .left {
+  width: 21%;
+  height: 100%; /* background: rgba(0,0,0,.1); */
+}
+.desktop .window .content .main_layer .split .left {
+  padding: 5px;
+  padding-top: 12px;
+}
+.desktop .window .content .main_layer .split .left .search_type {}
+.desktop .window .content .main_layer .split .left .search_type .title {
+  margin-bottom: 3px;
+  font-size: 12px;
+  border-bottom: 1px dotted;
+  display: inline-block;
+  position: relative;
+  top: -4px;
+}
+.desktop .window .content .main_layer .split .left .search_type .types {
+  display: block;
+}
+.desktop .window .content .main_layer .split .left .search_type .type {
+  display: inline-block;
+  width: 49%;
+  height: 25px;
+  background: #bbbcbc;
+  padding: 4px 10px;
+  border: 1px solid #000000b5;
+  margin-top: -1px;
+  cursor: not-allowed;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.strike {
+  text-decoration: line-through;
+  filter: grayscale(1);
+  position: relative;
+  z-index: -1;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.current {
+  background: linear-gradient(to top, #84b54a 10%, #84b54a 30%, #95be64 40%, #9ac26a 50%, #a3c777 60%, #b1d08d 70%, #bde7a9 80%, #d6e6c6 85%, #e7f3d7 90%, #e7f3d7 100%);
+}
+.desktop .window .content .main_layer .split .left .search_type .type:nth-child(1), .desktop .window .content .main_layer .split .left .search_type .type:nth-child(3), .desktop .window .content .main_layer .split .left .search_type .type:nth-child(5) {
+  margin-right: -5px;
+}
+.desktop .window .content .main_layer .split .left .search_type .type span {
+  position: relative;
+  padding-left: 19px;
+}
+.desktop .window .content .main_layer .split .left .search_type .type span:before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: -2px;
+  top: -1px;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.all span:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_types_all.png");
+  background-size: contain;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.audio span:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_types_audio.png");
+  background-size: contain;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.images span:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_types_images.png");
+  background-size: contain;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.video span:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_types_video.png");
+  background-size: contain;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.documents span:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_types_documents.png");
+  background-size: contain;
+}
+.desktop .window .content .main_layer .split .left .search_type .type.programs span:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_types_programs.png");
+  background-size: contain;
+}
+.desktop .window .content .main_layer .split .left .search_parameters {
+  margin-top: 5px;
+  display: block;
+  margin-right: 5px;
+  border: 1px solid #000000b5;
+  padding: 10px 8px;
+  height: 400px;
+  position: relative;
+}
+.desktop .window .content .main_layer .split .left .search_parameters .alerts {}
+.desktop .window .content .main_layer .split .left .search_parameters .alerts .alert.error {
+  margin-bottom: 10px;
+  color: #ff0000;
+}
+.desktop .window .content .main_layer .split .left .search_parameters .heading {
+  font-size: 17px;
+  margin-bottom: 10px;
+  display: block;
+}
+.desktop .window .content .main_layer .split .left .search_parameters form {}
+.desktop .window .content .main_layer .split .left .search_parameters form .form_row {}
+.desktop .window .content .main_layer .split .left .search_parameters form .form_row label {
+  display: block;
+  margin-bottom: 4px;
+}
+.desktop .window .content .main_layer .split .left .search_parameters form .form_row input {
+  border: 1px solid #00000085;
+  height: 20px;
+  padding: 2px 3px;
+  font-size: 11px;
+  font-family: Tahoma;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  width: 80%;
+}
+.desktop.game_over .window .content .main_layer .split .left .search_parameters form .form_row input, .desktop.game_over .window .content .main_layer .split .left .search_parameters form .form_row button {
+  cursor: not-allowed;
+  pointer-events: none;
+  background: #dddddd;
+}
+.desktop .window .content .main_layer .split .left .search_parameters form .form_row input:disabled, .desktop .window .content .main_layer .split .left .search_parameters form .form_row button:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.desktop .window .content .main_layer .split .left .search_parameters form .form_row.submit {
+  margin-top: 10px;
+}
+.desktop .window .content .main_layer .split .left .search_parameters form .form_row.submit button {
+  background: linear-gradient(to top, #bfbfbf 10%, #b2b2b2 30%, #bebebe 40%, #c2c2c2 50%, #c8c8c8 60%, #cdcdcd 70%, #e7e7e7 80%, #e7e7e7 85%, #f5f5f5 90%, #fafafa 100%);
+  border: 1px solid #00000085;
+  padding: 3px 10px;
+  font-size: 12px;
+  border-radius: 2px;
+  color: #000;
+  font-size: 11px;
+  font-family: Tahoma;
+}
+.desktop .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus {
+	background: #fcfae7;
+	border-radius: 5px;
+	margin-top: 19px;
+	padding: 7px 8px 9px 8px;
+	position: absolute;
+	bottom: 10px;
+	width: 186px;
+	font-size: 12px;
+}
+.desktop .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus .heading {
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 600;
+	border-bottom: 1px dotted;
+	font-weight: 400;
+	color: #000;
+	display: inline-block;
+}
+.desktop .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus p {
+	margin: 0;
+	margin-bottom: 10px;
+	font-size: 11px;
+}
+.desktop .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus p:last-child {
+	margin: 0;
+}
+.desktop .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus p i {
+	
+}
+.desktop .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus p span {
+	
+}
+.desktop .window .content .main_layer .split .right {
+  width: 79%;
+  height: 100%; /* background: rgba(0,0,0,.2); */
+}
+.desktop .window .content .main_layer .split .right .tabs .highscore {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.desktop .window .content .main_layer .split .right .tabs .highscore div {
+  display: inline-block;
+  position: relative;
+  margin-left: 30px;
+}
+.desktop .window .content .main_layer .split .right .tabs .highscore .score:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  transition: all .2s;
+  position: absolute;
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_star.png);
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  left: -23px;
+  top: -3px;
+  filter: grayscale(1);
+}
+.desktop .window .content .main_layer .split .right .tabs .highscore div span {}
+.desktop .window .content .main_layer .split .right .tabs .highscore .rank:before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  transition: all .2s;
+  position: absolute;
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/xp_icon_globe.png);
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  left: -23px;
+  top: -2px;
+  filter: grayscale(1);
+}
+.desktop .window .content .main_layer .split .right .tabs .highscore div a {
+  color: #000;
+  text-decoration: underline;
+}
+.desktop .window .content .main_layer .split .right .tabs {
+  display: block;
+  margin-top: 10px;
+  height: 20.5px;
+}
+.desktop .window .content .main_layer .split .right .tabs .tab {
+  display: inline-block;
+  border: 1px solid #0000006e;
+  padding: 1px 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  position: relative;
+  padding-left: 25px;
+  padding-bottom: 3px;
+  padding-top: 2px;
+}
+.desktop .window .content .main_layer .split .right .tabs .tab .term {
+  background: #84b54a;
+  display: inline-block;
+  padding: 1px 0;
+}
+.desktop .window .content .main_layer .split .right .tabs .tab .term .close:before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  transition: all .2s;
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_close_tab.png");
+  background-size: contain;
+  cursor: pointer;
+}
+.desktop .window .content .main_layer .split .right .tabs .tab .term .results_number {}
+.desktop .window .content .main_layer .split .right .results_wrap {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #d7d6d6;
+  min-height: 372px;
+  box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+  position: relative;
+  z-index: 1;
+  top: -1px;
+  left: -3px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen {
+  display: block;
+  width: 98%;
+  height: 275px;
+  border: 1px solid #00000082;
+  margin: 0 auto;
+  position: relative;
+  top: 10px;
+  background: #fff;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column {
+  background: #84b54a;
+  border-top: 2px solid #c5ddaa;
+  border-left: 2px solid #c5ddaa;
+  border-bottom: 2px solid #5b7d32;
+  border-right: 2px solid #5b7d32;
+  padding: 1px 5px;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  text-align: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.quality {
+  width: 65px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.number {
+  width: 30px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.license {
+  width: 50px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.name {
+  width: 350px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.type {
+  width: 60px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.size {
+  width: 100px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.speed {
+  width: 75px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.bitrate {
+  width: 50px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.scroll {
+  width: 30px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows {
+  display: block;
+  overflow: scroll;
+  height: 253px;
+  user-select: none;
+}
+.desktop .window:not(.locked) .content .main_layer .split .right .results_wrap .results_screen .rows.has_tutorial {
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/results_screen_tutorial_background.svg);
+}
+.desktop .window:not(.locked) .content .main_layer .split .right .results_wrap .results_screen .rows.has_tutorial.only_search {
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/results_screen_tutorial_background_only_search.svg);
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: default;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row:nth-child(even) {
+  background: #e7f3d7;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.selected {
+  background: #2f61bc !important;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.virus_caught, .desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.virus_caught.selected {
+  background: #ff0000 !important;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell {
+  padding: 1px 1px;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  text-align: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.selected .cell, .desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.virus_caught.selected .cell, .desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.virus_caught .cell {
+  color: #fff;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.quality {
+  width: 65px;
+  height: 15px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_stars.png");
+  background-size: 45px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.downloaded .cell.quality {
+  width: 65px;
+  height: 15px;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_downloaded.png");
+  background-size: 17px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.number {
+  width: 30px;
+  text-align: right;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.license {
+  width: 50px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.name {
+  width: 350px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.type {
+  width: 60px;
+  position: relative;
+  left: -1px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.size {
+  width: 100px;
+  position: relative;
+  left: 0px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.speed {
+  width: 75px;
+  position: relative;
+  /* left: -2px; */
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.bitrate {
+  width: 50px;
+  position: relative;
+  left: -1px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.scroll {
+  width: 30px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin-top: 0px;
+  padding-top: 15px;
+  text-align: center;
+  position: relative;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .time_score {
+  width: 125px;
+  display: inline-block;
+  color: #000;
+  position: absolute;
+  float: right;
+  font-size: 15px;
+  text-align: left;
+  right: 5px;
+  top: 15px;
+  line-height: 22px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .time_score .time_left {
+  margin-bottom: 12px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .time_score .time_left:before {
+  content: '';
+  width: 66px;
+  height: 66px;
+  transition: all .2s;
+  position: absolute;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/windows_hourglass.gif");
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  left: -51px;
+  top: -21px;
+}
+.desktop.game_over .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .time_score .time_left:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/windows_hourglass_frozen.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .time_score .score {}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .time_score .score:before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  transition: all .2s;
+  position: absolute;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/windows_star.png");
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  left: -30px;
+  top: 32px;
+}
+.desktop.game_over .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .time_score .score:before {
+  filter: grayscale(1);
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action {
+  width: 100px;
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  position: relative;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action:before {
+  content: '';
+  width: 35px;
+  height: 35px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_close_tab.png");
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2px;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action.download:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_download.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action.start_game:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_startgame.png");
+  background-size: contain;
+  background-position: center;
+  animation: bounce_x 2s infinite;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action.start_game {
+  font-weight: bold;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action.browse_host:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_browse_host.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action.stop_search:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_stop_search.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action.junk {
+  float: right;
+}
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action.junk:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_junk.png");
+  background-size: contain;
+  background-position: center;
+  top: -1px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap {
+  position: relative;
+  left: -3px;
+  margin-top: 7px;
+  border-top: 1.5px solid rgba(0, 0, 0, .35);
+  padding-top: 5px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen {
+  display: block;
+  width: 100%;
+  height: 90px;
+  border: 1px solid #00000082;
+  margin: 0 auto;
+  position: relative;
+  top: 1px;
+  background: #fff;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns .column {
+  background: #84b54a;
+  border-top: 2px solid #c5ddaa;
+  border-left: 2px solid #c5ddaa;
+  border-bottom: 2px solid #5b7d32;
+  border-right: 2px solid #5b7d32;
+  padding: 1px 5px;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  text-align: center;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns .column.name {
+  width: 322px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns .column.size {
+  width: 70px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns .column.status {
+  width: 160px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns .column.progress {
+  width: 160px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns .column.speed {
+  width: 60px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .columns .column.time {
+  width: 50px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows {
+  display: block;
+  overflow: scroll;
+  height: 70px;
+  user-select: none;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: default;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row:nth-child(even) {
+  background: #e7f3d7;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell {
+  padding: 1px 2px;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  text-align: center;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.name {
+  width: 322px;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.size {
+  width: 70px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.status {
+  width: 160px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.progress {
+  width: 160px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.progress .bar {
+  width: 135px;
+  box-shadow: 0 0px 1px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+  margin: 0 auto;
+  margin-top: 1px;
+  height: 11px;
+  padding: 1px;
+  font-size: 10px;
+  text-align: center;
+  background: transparent;
+  position: relative;
+  top: -1px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.progress .bar span {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, .25);
+  top: -2px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.progress .bar .green {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #84b54a;
+  height: 100%;
+  z-index: 0;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.speed {
+  width: 60px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.time {
+  width: 50px;
+  text-align: left;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_actions {
+  display: block;
+  width: 100%;
+  height: 86px;
+  margin-top: 0px;
+  padding-top: 17px;
+  text-align: center;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_actions .action {
+  width: 140px;
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  filter: grayscale(1);
+  cursor: pointer;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_actions .action:hover {
+  filter: none;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_actions .action:before {
+  content: '';
+  width: 35px;
+  height: 35px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/limewire_icon_whitebg.svg");
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2px;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_actions .action.twitter:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_twitter.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_actions .action.instagram:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_instagram.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_actions .action.discord:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_discord.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop .window .content .bottom_footer {
+  display: flex;
+  width: 100%;
+  height: 24px;
+  border-top: 1px solid rgba(0, 0, 0, .5);
+  color: #000;
+  font-size: 11px;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  align-items: center;
+  flex-direction: row;
+  /* padding: 0 5px; */
+  position: relative;
+  bottom: -7px;
+}
+.desktop .window .content .bottom_footer .part {
+  border-right: 1px solid rgba(0, 0, 0, .8);
+  display: inline-block;
+  height: 85%;
+  line-height: 20px;
+  padding: 0 5px;
+  position: relative;
+}
+.desktop .window .content .bottom_footer .part.connection {
+  position: relative;
+  padding-left: 44px;
+}
+.desktop .window .content .bottom_footer .part.connection span {}
+.desktop .window .content .bottom_footer .part.connection span:before {
+  content: '';
+  width: 34px;
+  height: 34px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_connection.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: -7px;
+}
+.desktop .window .content .bottom_footer .part.earth span {}
+.desktop .window .content .bottom_footer .part.earth span:before {
+  content: '';
+  width: 20px;
+  height: 21px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_earth.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.desktop .window .content .bottom_footer .part.green_circle {}
+.desktop .window .content .bottom_footer .part.green_circle span {
+  display: inline-block;
+  width: 26px;
+  height: 20px;
+  background: #028902;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 100px;
+  text-align: center;
+  line-height: 18px;
+}
+.desktop .window .content .bottom_footer .part.upload_download {
+  width: 188px;
+  text-align: center;
+}
+.desktop .window .content .bottom_footer .part.upload_download .upload {
+  position: relative;
+  padding-left: 20px;
+  margin-left: 5px;
+}
+.desktop .window .content .bottom_footer .part.upload_download .upload:before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_up.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+.desktop .window .content .bottom_footer .part.upload_download .download {
+  position: relative;
+  padding-left: 20px;
+}
+.desktop .window .content .bottom_footer .part.upload_download .download i {
+  font-style: normal;
+}
+.desktop .window .content .bottom_footer .part.upload_download .download:before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_down.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+.desktop .window .content .bottom_footer .part.announcement {
+  width: 358px;
+  text-align: center;
+}
+.desktop .window .content .bottom_footer .part.announcement span {}
+.desktop .window .content .bottom_footer .part.announcement span a {
+  text-decoration: underline;
+  color: #ff0000;
+}
+.desktop .window .content .bottom_footer .part.player {
+  display: flex;
+  border-right: 0;
+}
+.desktop .window .content .bottom_footer .part.player .buttons {
+  display: inline-block;
+}
+.desktop .window .content .bottom_footer .part.player .buttons a {}
+.desktop .window .content .bottom_footer .part.player .buttons a:before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_prev.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  left: 0;
+  top: 2.5px;
+  margin-right: 5px
+}
+.desktop .window .content .bottom_footer .part.player .buttons a.prev:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_prev.png");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.35;
+}
+.desktop .window .content .bottom_footer .part.player .buttons a.play:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_play.png");
+  background-size: 9px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.desktop .window .content .bottom_footer .part.player.playing .buttons a.play:before {
+  opacity: 0.35;
+}
+.desktop .window .content .bottom_footer .part.player .buttons a.pause:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_pause.png");
+  background-size: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.desktop .window .content .bottom_footer .part.player.paused .buttons a.pause:before {
+  opacity: 0.35;
+}
+.desktop .window .content .bottom_footer .part.player .buttons a.stop:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_stop.png");
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.desktop .window .content .bottom_footer .part.player .buttons a.next:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_next.png");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.35;
+}
+.desktop .window .content .bottom_footer .part.player .bar {
+  width: 125px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, .8);
+  text-align: center;
+  padding: 0;
+  margin-left: 5px;
+  font-size: 10px;
+}
+.desktop .window .content .bottom_footer .part.player .bar span {
+  line-height: normal;
+  position: relative;
+  top: -1px;
+}
+.desktop .window.popup {
+  display: block;
+  width: 570px;
+  height: 450px;
+  background: #2d56b1;
+  margin: 0 auto;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  box-shadow: 0 7px 14px 0 rgba(60, 66, 87, .1), 0 3px 6px 0 rgba(0, 0, 0, .1);
+  overflow: hidden;
+  border: 1.5px solid #2d56b1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100px;
+  z-index: 1;
+  margin: 0 auto;
+}
+.desktop .window.popup.mobile {
+	display: none;
+}
+.desktop .window.popup .content {
+  background: #ffffff url("/web/20230420162531im_/https://game.limewire.com/img/lw_popup_background.svg");
+  background-position: top left;
+  background-size: 189px;
+  background-repeat: no-repeat;
+  height: 410px;
+  width: 563px;
+  position: relative;
+  font-family: Tahoma;
+}
+.desktop .window.popup.caught_virus .content {
+  background: #ffffff url("/web/20230420162531im_/https://game.limewire.com/img/lw_popup_background_virus.svg");
+  background-position: top left;
+  background-size: 189px;
+  background-repeat: no-repeat;
+}
+.desktop .window.popup .content .main {
+  padding-left: 207px;
+  padding-right: 18px;
+  padding-top: 18px;
+}
+.desktop .window.popup .content .main h1 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.desktop .window.popup.caught_virus .content .main h1 {
+  font-size: 19px;
+}
+.desktop .window.popup .content .main p {
+  font-size: 13px;
+  margin-top: 25px;
+  line-height: 18px;
+}
+.desktop .window.popup.welcome .content .main p {
+  margin: 0;
+}
+.desktop .window.popup.game_finished .content .main p {
+  margin-top: 40px;
+}
+.desktop .window.popup .content .main .quickstart {
+  background: linear-gradient(120deg, #ebe9da 0%, #fcfae7 100%);
+  border-radius: 5px;
+  margin-top: 19px;
+  padding: 7px 8px 9px 8px;
+  height: 155.5px;
+}
+.desktop .window.popup .content .main .quickstart .quickstart_heading {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.desktop .window.popup .content .main .quickstart .quickstart_heading a {
+	float: right;
+	border-bottom: 1px dotted;
+	font-weight: 400;
+	color: #000;
+	cursor: pointer;
+}
+.desktop .window.popup .content .main .quickstart p {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 12px;
+  padding-left: 23px;
+}
+.desktop .window.popup .content .main .quickstart.prizes p {
+	padding: 0;
+	margin-top: 13px;
+}
+.desktop .window.popup .content .main .quickstart p:last-child {
+  margin: 0;
+  margin-bottom: 5px;
+  /* line-height: 19px; */
+}
+.desktop .window.popup .content .main .quickstart p span {}
+.desktop .window.popup .content .main .quickstart p i {
+  background: #363636;
+  width: 20px;
+  height: 20px;
+  color: #fff; /* border-radius: 100px; */ text-align: center;
+  line-height: 18px;
+  display: inline-block;
+  font-style: normal;
+  position: absolute;
+  margin-left: -25px;
+  transform: scale(0.8);
+  padding-top: 1px;
+  margin-top: -1px;
+}
+.desktop .window.popup .content .main .quickstart .table {
+	position: relative;
+	top: 0;
+	font-size: 12px;
+}
+.desktop .window.popup .content .main .quickstart .table .thead {
+
+}
+.desktop .window.popup .content .main .quickstart .table .thead .tr {display: flex;flex-direction: row;align-items: center;}
+.desktop .window.popup .content .main .quickstart .table .thead .tr .td {background: #84b54a;border-top: 2px solid #c5ddaa;border-left: 2px solid #c5ddaa;border-bottom: 2px solid #5b7d32;border-right: 2px solid #5b7d32;padding: 1px 5px;-webkit-font-smoothing: none;-moz-font-smoothing: none;text-align: center;filter: grayscale(1);}
+.desktop .window.popup .content .main .quickstart .table .thead .tr .td.rank {width: 40%;}
+.desktop .window.popup .content .main .quickstart .table .thead .tr .td.prize {width: 60%;}
+.desktop .window.popup .content .main .quickstart .table .tbody {margin-top: 13px;}
+.desktop .window.popup .content .main .quickstart .table .tbody .tr {display: flex;flex-direction: row;align-items: center;margin-bottom: 5px;}
+.desktop .window.popup .content .main .quickstart .table .tbody .tr .td {
+    padding: 1px 0px;
+    position: relative;
+}
+.desktop .window.popup .content .main .quickstart .table .tbody .tr .td.rank {width: 40%;padding-left: 19px;}
+.desktop .window.popup .content .main .quickstart .table .tbody .tr:nth-child(1) .td.rank:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	transition: all .2s;
+	position: absolute;
+	background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_star.png);
+	background-size: contain;
+	background-position: center;
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	left: 0px;
+	top: 0px;
+	filter: grayscale(0);
+}
+.desktop .window.popup .content .main .quickstart .table .tbody .tr:nth-child(2) .td.rank:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	transition: all .2s;
+	position: absolute;
+	background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_star.png);
+	background-size: contain;
+	background-position: center;
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	left: 0px;
+	top: 0px;
+	filter: grayscale(0.5);
+}
+.desktop .window.popup .content .main .quickstart .table .tbody .tr:nth-child(3) .td.rank:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	transition: all .2s;
+	position: absolute;
+	background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_star.png);
+	background-size: contain;
+	background-position: center;
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	left: 0px;
+	top: 0px;
+	filter: grayscale(1);
+}
+.desktop .window.popup .content .main .quickstart .table .tbody .tr .td.prize {width: 60%;}
+.desktop .window.popup .content .main .highscore {
+  display: block;
+  margin-bottom: 17px;
+  font-size: 18px;
+  background: #01934a;
+  color: #fff;
+  width: fit-content;
+  padding: 5px 10px;
+  -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
+  font-weight: 600;
+}
+.desktop .window.popup.caught_virus .content .main .highscore {
+  background: #efc01a;
+}
+.desktop .window.popup .content .main .highscore span {}
+.desktop .window.popup .content .main .alerts {
+  display: inline-block;
+  width: 150px;
+  margin-left: 8px;
+  position: absolute;
+  top: 17px;
+}
+.desktop .window.popup .content .main .alerts .alert.error {
+  font-size: 12px;
+  color: #ff0000;
+  margin-top: 5px;
+}
+.desktop .window.popup .content .main .alerts .alert.success {
+  font-size: 12px;
+  color: green;
+  margin-top: 5px;
+}
+.desktop .window.popup .content .main label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.desktop .window.popup .content .main .form_wrap {
+  position: relative;
+  margin-top: 13px;
+}
+.desktop .window.popup .content .main input {
+  border: 1px solid #00000085;
+  height: 23px;
+  padding: 2px 3px;
+  font-size: 13px;
+  font-family: Tahoma;
+  width: 175px;
+  display: inline-block;
+}
+.desktop .window.popup .content .actions_footer {
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  background: #ece9da;
+  border-top: 1.5px solid #d7d7d9;
+  text-align: right;
+  padding-top: 11px;
+  padding-right: 11px;
+}
+.desktop .window.popup .content .actions_footer .action {
+  width: 90px;
+  height: 24px;
+  background: #f2f3ee;
+  border-radius: 3px;
+  border: 1.5px solid #2c4da7bd;
+  box-shadow: 0 1px 1px 0 rgba(60, 66, 87, .05), 0 1px 1px 0 rgba(0, 0, 0, .05);
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding-top: 2px;
+  font-family: Tahoma;
+  font-size: 12px;
+  cursor: pointer;
+  letter-spacing: 0.35px;
+  color: rgba(0, 0, 0, .9);
+  line-height: 16px;
+}
+.desktop .window.popup .content .actions_footer .learn_more_lmwr {
+  text-decoration: underline;
+  color: #222222;
+  padding: 0;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  top: 4px;
+  left: 11px;
+}
+.desktop .window.popup .content .actions_footer button.action {
+  padding: 0;
+  padding-bottom: 2px;
+}
+.desktop .window.popup .content .actions_footer .action.share_score {
+  width: 170px;
+  margin-left: 2px;
+  position: relative;
+  padding-left: 20px;
+}
+.desktop .window.popup .content .actions_footer .action.share_score:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url(/web/20230420162531im_/https://game.limewire.com/img/twitter_icon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: absolute;
+  left: 9px;
+  top: 4px;
+}
+.desktop .window.popup .content .actions_footer .action span {
+  font-size: 14px;
+  position: relative;
+  top: 1px;
+}
+.desktop .window.popup .window_header .buttons {
+  /* opacity: 0.5; */
+  cursor: not-allowed;
+}
+.loading {
+  cursor: wait;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.window.popup.game_finished .leaderboard_illustration {
+  display: block;
+  /* border: 1px solid rgba(0,0,0,.25); */
+  /* padding: 5px 8px; */
+  font-size: 13px;
+  line-height: 18px;
+  position: relative;
+  top: 10px;
+}
+.window.popup.game_finished .leaderboard_illustration .heading {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 3px 8px;
+  background: #dddddd;
+}
+.window.popup.game_finished .leaderboard_illustration .heading span {
+  /* font-weight: 600; */
+}
+.window.popup.game_finished .leaderboard_illustration .heading a {
+  margin: 0;
+  text-decoration: underline;
+  color: #01934a;
+}
+.window.popup.game_finished .leaderboard_illustration .row {
+  display: block;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  padding: 0 8px;
+}
+.window.popup.game_finished .leaderboard_illustration .row.this {
+  background: yellow;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.window.popup.game_finished .leaderboard_illustration .row.margin {
+  position: relative;
+  top: -4px;
+}
+.window.popup.game_finished .leaderboard_illustration .row span {
+  font-size: 13px;
+  display: inline-block;
+}
+.window.popup.game_finished .leaderboard_illustration .row span.rank {
+  width: 45px;
+}
+.window.popup.game_finished .leaderboard_illustration .row span.user {
+  width: 180px;
+}
+.window.popup.game_finished .leaderboard_illustration .row span.prize {}
+.window.popup.game_finished .leaderboard_illustration .row.head {
+  border-bottom: 1px solid;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+}
+.window.popup.game_finished .leaderboard_illustration .row.head span {}
+.window.popup.game_finished .leaderboard_illustration .row.head span.rank {}
+.window.popup.game_finished .leaderboard_illustration .row.head span.user {}
+.window.popup.game_finished .leaderboard_illustration .row.head span.prize {}
+.desktop.leaderboard .window .content .main_layer {
+	
+}
+.desktop.leaderboard .window .content .main_layer .split {
+	
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table_headings,
+.desktop.challenges .window .content .main_layer .split .left .table_headings,
+.desktop.faq .window .content .main_layer .split .left .table_headings{
+	position: absolute;
+	top: 7px;
+	font-size: 12px;
+	border-bottom: 1px dotted;
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table_headings .prize_schedule {
+	
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table_headings .leaderboard {
+	position: absolute;
+	left: 355px;
+	border-bottom: 1px dotted;
+}
+.desktop.leaderboard .window .content .main_layer .split .left {
+	width: 35%;
+}
+.desktop.leaderboard .window .content .main_layer .split .right {
+	width: 65%;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board {
+	display: block;
+	width: 100%;
+	height: auto;
+	background: #fff;
+	height: 490px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	position: relative;
+	z-index: 1;
+	top: -1px;
+	left: -6px;
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table {
+	position: relative;
+	top: 17.5px;
+	min-height: 565px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	width: 345px;
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .thead {
+
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .thead .tr {display: flex;flex-direction: row;align-items: center;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .thead .tr .td {background: #84b54a;border-top: 2px solid #c5ddaa;border-left: 2px solid #c5ddaa;border-bottom: 2px solid #5b7d32;border-right: 2px solid #5b7d32;padding: 1px 5px;-webkit-font-smoothing: none;-moz-font-smoothing: none;text-align: center;filter: grayscale(1);}
+.desktop.leaderboard .window .content .main_layer .split .left .table .thead .tr .td.rank {width: 40%;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .thead .tr .td.prize {width: 60%;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody {
+
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody .tr {display: flex;flex-direction: row;align-items: center;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody .tr .td {
+    padding: 1px 5px;
+	position: relative;
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody .tr .td.rank {width: 40%;padding-left: 25px;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody .tr:nth-child(1) .td.rank:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	transition: all .2s;
+	position: absolute;
+	background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_star.png);
+	background-size: contain;
+	background-position: center;
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	left: 5px;
+	top: 0px;
+	filter: grayscale(0);
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody .tr:nth-child(2) .td.rank:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	transition: all .2s;
+	position: absolute;
+	background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_star.png);
+	background-size: contain;
+	background-position: center;
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	left: 5px;
+	top: 0px;
+	filter: grayscale(0.5);
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody .tr:nth-child(3) .td.rank:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	transition: all .2s;
+	position: absolute;
+	background: url(/web/20230420162531im_/https://game.limewire.com/img/windows_star.png);
+	background-size: contain;
+	background-position: center;
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	left: 5px;
+	top: 0px;
+	filter: grayscale(1);
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .tbody .tr .td.prize {width: 60%;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .lmwr_ad {
+	display: block;
+	position: absolute;
+	width: 324px;
+	height: 93px;
+	bottom: 10px;
+	left: 10px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	padding: 7px 7px 6px 7px;
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .lmwr_ad img {height: 24px;display: block;margin-bottom: 7px;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .lmwr_ad span {font-size: 12px;display: block;}
+.desktop.leaderboard .window .content .main_layer .split .left .table .lmwr_ad span sup {
+	position: relative;
+    top: -3px;
+}
+.desktop.leaderboard .window .content .main_layer .split .left .table .lmwr_ad a {width: 90px;height: 24px;background: #f2f3ee;border-radius: 3px;border: 1.5px solid #3c3d47e3;box-shadow: 0 1px 1px 0 rgba(60, 66, 87, .05), 0 1px 1px 0 rgba(0, 0, 0, .05);font-size: 12px;display: inline-block;vertical-align: top;text-align: center;padding-top: 3px;font-family: Tahoma;font-size: 12px;cursor: pointer;letter-spacing: 0.35px;color: rgba(0, 0, 0, .9);line-height: 16px;margin-top: 9.5px;transform: scale(0.95);position: relative;left: -2px;background: linear-gradient(to top, #bfbfbf 10%, #b2b2b2 30%, #bebebe 40%, #c2c2c2 50%, #c8c8c8 60%, #cdcdcd 70%, #e7e7e7 80%, #e7e7e7 85%, #f5f5f5 90%, #fafafa 100%);border: 1px solid #00000085;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table {
+
+}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .thead {
+
+}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .thead .tr {
+
+}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .thead .tr .td {background: #84b54a;border-top: 2px solid #c5ddaa;border-left: 2px solid #c5ddaa;border-bottom: 2px solid #5b7d32;border-right: 2px solid #5b7d32;padding: 1px 5px;-webkit-font-smoothing: none;-moz-font-smoothing: none;text-align: center;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .tbody {display: block;overflow: scroll;height: 470px;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .tbody .tr {
+
+}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .tbody .tr.highlighted {
+    background: #83b54a;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .tbody .tr .td {text-align: left;padding: 1px 5px;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .tr {display: flex;flex-direction: row;align-items: center;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .td.rank {width: 15%;padding: 1px 1px;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .td.user {width: 30%;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .td.score {width: 20%;}
+.desktop.leaderboard .window .content .main_layer .split .right .leader_board .table .td.prize {width: 35%;text-align: left;}
+.desktop.leaderboard .window .content .main_layer .split .right .score_actions {
+  display: block;
+  width: 100%;
+  height: 86px;
+  margin-top: 0px;
+  padding-top: 17px;
+  text-align: center;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .score_actions .action {
+  width: 250px;
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  filter: grayscale(1);
+  cursor: pointer;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .score_actions .action:hover {
+  filter: none;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .score_actions .action:before {
+  content: '';
+  width: 35px;
+  height: 35px;
+  transition: all .2s;
+  position: relative;
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/limewire_icon_whitebg.svg");
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2px;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .score_actions .action.twitter:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_twitter.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .score_actions .action.instagram:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_instagram.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop.leaderboard .window .content .main_layer .split .right .score_actions .action.discord:before {
+  background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_discord.png");
+  background-size: contain;
+  background-position: center;
+}
+.desktop.challenges .window .content .main_layer .split {
+	
+}
+.desktop.challenges .window .content .main_layer .split .left {
+    width: 69.5%;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap {position: relative;top: 17.5px;min-height: 565px;box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);padding: 5px 5px;font-size: 11px;background: #fff;}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .explanation_paragraph {
+	max-width: 500px;
+	margin-bottom: 10px;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .explanation_paragraph p span {
+    text-decoration: underline;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .collected_bonus_points {
+
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .collected_bonus_points p {
+	font-weight: 600;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .collected_bonus_points p span {
+
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	width: 425px;
+	padding: 5px 5px 7px 5px;
+	background: linear-gradient(120deg, #ebe9da 0%, #fcfae7 100%);
+	border-radius: 3px;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge .heading {text-decoration: underline;margin-bottom: 10px;/* font-weight: 600; */}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge .heading span {
+	float: right;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge label {
+	display: block;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge.completed label {
+	color: #000;
+	position: relative;
+	padding-left: 24px;
+	margin-top: 20px;
+	display: block;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge.completed label:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    transition: all .2s;
+    position: absolute;
+    background: url(/web/20230420162531im_/https://game.limewire.com/img/xp_icon_completed.png);
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    left: 0;
+    top: -3px;
+    filter: grayscale(1);
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge input {
+	display: inline-block;
+	font-size: 11px;
+	margin-top: 3.5px;
+	border: 1px solid #00000085;
+	height: 22px;
+	padding: 2px 3px;
+	font-size: 11px;
+	font-family: Tahoma;
+	-webkit-font-smoothing: none;
+	-moz-font-smoothing: none;
+	width: 150px;
+	margin-right: 5px;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge.completed input,
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge.completed a {
+	display: none !important;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge a.complete_challenge {
+    width: 90px;
+    height: 23px;
+    background: #f2f3ee;
+    border-radius: 3px;
+    border: 1.5px solid #3c3d47e3;
+    box-shadow: 0 1px 1px 0 rgba(60, 66, 87, .05), 0 1px 1px 0 rgba(0, 0, 0, .05);
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 2px;
+    font-family: Tahoma;
+    font-size: 12px;
+    cursor: pointer;
+    letter-spacing: 0.35px;
+    color: rgba(0, 0, 0, .9);
+    line-height: 16px;
+    margin-top: 3px;
+    transform: scale(0.95);
+    position: relative;
+    left: -8px;
+    background: linear-gradient(to top, #bfbfbf 10%, #b2b2b2 30%, #bebebe 40%, #c2c2c2 50%, #c8c8c8 60%, #cdcdcd 70%, #e7e7e7 80%, #e7e7e7 85%, #f5f5f5 90%, #fafafa 100%);
+    border: 1px solid #00000085;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge a.complete_challenge.twitter {
+    width: 230px;
+    margin-left: 2px;
+    position: relative;
+    padding-left: 33px;
+    text-align: left;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge a.complete_challenge.twitter:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_twitter.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	left: 12px;
+	top: 2.5px;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge a.complete_challenge.instagram {
+    width: 230px;
+    margin-left: 2px;
+    position: relative;
+    padding-left: 33px;
+    text-align: left;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge a.complete_challenge.instagram:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_instagram.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	left: 12px;
+	top: 2.5px;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge a.complete_challenge.discord:before {
+	content: '';
+	width: 16px;
+	height: 16px;
+	background: url("/web/20230420162531im_/https://game.limewire.com/img/lw_icon_discord.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	left: 12px;
+	top: 2.5px;
+}
+.desktop.challenges .window .content .main_layer .split .left .challenges_wrap .challenge a.complete_challenge.discord {
+    width: 230px;
+    margin-left: 2px;
+    position: relative;
+    padding-left: 33px;
+    text-align: left;
+}
+.desktop.challenges .window .content .main_layer .split .right {
+    width: 30%;
+}
+.desktop.challenges .window .content .main_layer .split .right .wrap {position: relative;top: -1px;min-height: 565px;box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);padding: 5px 5px;font-size: 11px;width: 307px;}
+.desktop.challenges .window .content .main_layer .split .right .wrap .lmwr_ad {
+	display: block;
+	position: absolute;
+	width: 287px;
+	height: 93px;
+	bottom: 10px;
+	left: 10px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	padding: 7px 7px 6px 7px;
+	background: linear-gradient(120deg, #ebe9da 0%, #fcfae7 100%);
+}
+.desktop.challenges .window .content .main_layer .split .right .wrap .lmwr_ad img {height: 24px;display: block;margin-bottom: 7px;}
+.desktop.challenges .window .content .main_layer .split .right .wrap .lmwr_ad span {font-size: 12px;display: block;}
+.desktop.challenges .window .content .main_layer .split .right .wrap .lmwr_ad span sup {
+	position: relative;
+    top: -3px;
+}
+.desktop.challenges .window .content .main_layer .split .right .wrap .lmwr_ad a {width: 90px;height: 24px;background: #f2f3ee;border-radius: 3px;border: 1.5px solid #3c3d47e3;box-shadow: 0 1px 1px 0 rgba(60, 66, 87, .05), 0 1px 1px 0 rgba(0, 0, 0, .05);font-size: 12px;display: inline-block;vertical-align: top;text-align: center;padding-top: 3px;font-family: Tahoma;font-size: 12px;cursor: pointer;letter-spacing: 0.35px;color: rgba(0, 0, 0, .9);line-height: 16px;margin-top: 9.5px;transform: scale(0.95);position: relative;left: -2px;background: linear-gradient(to top, #bfbfbf 10%, #b2b2b2 30%, #bebebe 40%, #c2c2c2 50%, #c8c8c8 60%, #cdcdcd 70%, #e7e7e7 80%, #e7e7e7 85%, #f5f5f5 90%, #fafafa 100%);border: 1px solid #00000085;}
+.desktop.faq .window .content .main_layer .split {
+	justify-content: left;
+}
+.desktop.faq .window .content .main_layer .split .left {
+	width: 62%;
+	margin-right: 6px;
+}
+.desktop.faq .window .content .main_layer .split .right {
+	width: 36.75%;
+}
+.desktop.faq .window .content .main_layer .split .left .faq_wrap {
+	position: relative;
+	top: 17.5px;
+	min-height: 565px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	padding: 5px 5px;
+	font-size: 11px;
+	background: #d7d6d6;
+}
+.desktop.faq .window .content .main_layer .split .right .right_wrap {
+	position: relative;
+	top: -1px;
+	min-height: 565px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	padding: 5px 5px;
+	font-size: 11px;
+}
+.desktop.faq .window .content .main_layer .split .right .right_wrap .lmwr_ad {
+	display: block;
+	position: absolute;
+	width: 363px;
+	height: 93px;
+	bottom: 10px;
+	left: 10px;
+	box-shadow: 0 0px 2px 0 #8f8f8f, 0 1px 1px 0 rgb(0 0 0 / 50%);
+	padding: 7px 7px 6px 7px;
+	/* background: linear-gradient(120deg, #ebe9da 0%, #fcfae7 100%); */
+}
+.desktop.faq .window .content .main_layer .split .right .right_wrap .lmwr_ad img {height: 24px;display: block;margin-bottom: 7px;}
+.desktop.faq .window .content .main_layer .split .right .right_wrap .lmwr_ad span {font-size: 12px;display: block;}
+.desktop.faq .window .content .main_layer .split .right .right_wrap .lmwr_ad span sup {
+	position: relative;
+    top: -3px;
+}
+.desktop.faq .window .content .main_layer .split .right .right_wrap .lmwr_ad a {width: 90px;height: 24px;background: #f2f3ee;border-radius: 3px;border: 1.5px solid #3c3d47e3;box-shadow: 0 1px 1px 0 rgba(60, 66, 87, .05), 0 1px 1px 0 rgba(0, 0, 0, .05);font-size: 12px;display: inline-block;vertical-align: top;text-align: center;padding-top: 3px;font-family: Tahoma;font-size: 12px;cursor: pointer;letter-spacing: 0.35px;color: rgba(0, 0, 0, .9);line-height: 16px;margin-top: 9.5px;transform: scale(0.95);position: relative;left: -2px;background: linear-gradient(to top, #bfbfbf 10%, #b2b2b2 30%, #bebebe 40%, #c2c2c2 50%, #c8c8c8 60%, #cdcdcd 70%, #e7e7e7 80%, #e7e7e7 85%, #f5f5f5 90%, #fafafa 100%);border: 1px solid #00000085;}
+.desktop.faq .window .content .main_layer .split .left .faq_wrap {
+	background: #fff;
+}
+.desktop.faq .window .content .main_layer .split .left .faq_wrap .single_faq {
+	margin-bottom: 15px;
+}
+.desktop.faq .window .content .main_layer .split .left .faq_wrap .single_faq .q {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.desktop.faq .window .content .main_layer .split .left .faq_wrap .single_faq .a {
+	line-height: 15px;
+}
+.desktop.faq .window .content .main_layer .split .left .faq_wrap .single_faq .a a {
+	margin: 0;
+	text-decoration: underline;
+	color: #01934a;
+	padding: 0;
+}
+/* mobile */
+@media screen and (max-width: 1000px) {
+	.desktop .window,
+	.desktop .window.popup{
+		display: none !important;
+	}
+	.desktop .window.popup.mobile {
+		display: block !important;
+		max-width: 570px;
+		width: 100%;
+	}
+	.desktop .window.popup.mobile .content {
+		width: 100%;
+	}
+	.desktop .window.popup.mobile .window_header .title span em {
+		font-style: normal;
+	}
+	.desktop .window.popup.mobile .window_header .title span em.hide_mobile_one {
+		font-style: normal;
+	}
+	.desktop .window.popup.mobile .content .main p:not(.alert) {
+		margin-top: 20px;
+	}
+	.desktop .window.popup.mobile .content .main .alerts {
+		display: block;
+		top: 0;
+		position: relative;
+		margin: 0;
+		margin-top: 5px;	
+		width: 100%;
+    }
+	
+}
+@media screen and (max-width: 500px) {
+	.desktop .window.popup.mobile .window_header .title span em.hide_mobile_one {
+		display: none;
+	}
+	.desktop .window.popup.mobile .content {
+		background-size: 150px;
+		height: 336px;
+	}
+	.desktop .window.popup.mobile {
+		height: 375px;
+	}
+	.desktop .window.popup.mobile .content .main {
+	    padding-left: 165px;
+	    padding-top: 15px;
+	}
+	.desktop .window.popup.mobile .content .main .form_wrap {
+		margin-top: 20px;
+	}
+	
+}
+@media screen and (max-width: 430px) {
+	.desktop .window.popup.mobile .window_header .title span em.hide_mobile_two {
+		display: none;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+     FILE ARCHIVED ON 16:25:31 Apr 20, 2023 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:24:51 Jun 26, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  capture_cache.get: 1.096
+  captures_list: 0.406
+  exclusion.robots: 0.041
+  exclusion.robots.policy: 0.033
+  esindex: 0.008
+  cdx.remote: 46.135
+  LoadShardBlock: 136.535 (3)
+  PetaboxLoader3.datanode: 154.822 (5)
+  PetaboxLoader3.resolve: 1097.265 (3)
+  load_resource: 1261.306 (2)
+*/
