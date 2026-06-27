@@ -946,8 +946,8 @@ img, svg {
 .desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.downloaded .cell.quality {
   width: 65px;
   height: 15px;
-  background: url("/img/lw_icon_downloaded.png");
-  background-size: 17px;
+  background: url("/img/lw_icon_stars.png");
+  background-size: 45px;
   background-repeat: no-repeat;
   background-position: center;
 }

@@ -307,16 +307,30 @@ body.desktop {
 }
 
 .desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.quality {
+  width: 48px;
   height: 16px;
+  background: url("/img/lw_icon_stars.png") !important;
   background-size: 9px !important;
   background-repeat: repeat-x !important;
   background-position: 4px center !important;
 }
 
 .desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row.downloaded .cell.quality {
-  background-size: 14px !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
+  width: 48px;
+  height: 16px;
+  background: url("/img/lw_icon_stars.png") !important;
+  background-size: 9px !important;
+  background-repeat: repeat-x !important;
+  background-position: 4px center !important;
+}
+
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .columns .column.scroll,
+.desktop .window .content .main_layer .split .right .results_wrap .results_screen .rows .row .cell.scroll {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .desktop .window .content .main_layer .split .right .results_wrap .results_screen .main_actions {
@@ -389,6 +403,13 @@ body.desktop {
 .desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell {
   width: auto !important;
   min-width: 0;
+}
+
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.name,
+.desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row .cell.name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .desktop .window .content .main_layer .split .right .progress_wrap .progress_screen .rows .row.selected {

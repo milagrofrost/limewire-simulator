@@ -2,6 +2,8 @@
 
 A local, self-contained LimeWire-style search and download simulator. It recreates the feel of an early-2000s peer-to-peer client: suspicious search results, unreliable modem-era transfer speeds, bad file hygiene, legal scare screens, seeding guilt, and the occasional fake Windows disaster.
 
+Credit note: this project is a fan recreation inspired by the original LimeWire game that appeared in 2023. It was reconstructed from archived materials and is not affiliated with LimeWire LLC.
+
 The app does not contact LimeWire, Wayback, peers, or any external backend while running. Downloads are UI simulations only.
 
 ## Run
@@ -36,6 +38,7 @@ Some useful searches:
 
 ## Easter Eggs And Gimmicks
 
+- **Default 100x dial-up acceleration**: by default the simulator speeds up transfers 100x so downloads complete quickly; click the footer `Mode: 100x (accelerated)` link to switch to real-time (slow, dial-up) speeds for an authentic painfully-slow experience.
 - **56k modem math**: file sizes are converted into real estimated download times over a 56k line.
 - **Shared bandwidth**: multiple active downloads split the same simulated 56k connection instead of each getting its own full speed.
 - **Frustrating speed swings**: downloads randomly fluctuate, dip, queue, reconnect, or show `Need More Sources`.

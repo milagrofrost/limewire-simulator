@@ -157,7 +157,7 @@ return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 
 const MODEM_56K_BYTES_PER_SECOND = 56000 / 8;
-const DOWNLOAD_SIMULATION_SPEEDUP = 20;
+var DOWNLOAD_SIMULATION_SPEEDUP = parseInt(localStorage.getItem('download_simulation_speedup')) || 100;
 var activeDownloads = {};
 var sharedDownloadTimer = null;
 var lineSpeedMultiplier = 1;
@@ -167,6 +167,37 @@ var seededUploads = {};
 var seedingTimer = null;
 var stoppedSeedingCount = 0;
 var leecherWarningShown = false;
+
+function setDownloadSimulationSpeedup(value, save) {
+	DOWNLOAD_SIMULATION_SPEEDUP = Number(value) || 1;
+	if (save) {
+		try { localStorage.setItem('download_simulation_speedup', DOWNLOAD_SIMULATION_SPEEDUP); } catch (e) {}
+	}
+	var $toggle = $('body').find('#download-mode-toggle');
+	if ($toggle.length) {
+		if (DOWNLOAD_SIMULATION_SPEEDUP <= 1) {
+			$toggle.text('Mode: Real-time (dial-up)');
+			$toggle.removeClass('mode-accelerated').addClass('mode-real');
+		} else {
+			$toggle.text('Mode: ' + DOWNLOAD_SIMULATION_SPEEDUP + 'x (accelerated)');
+			$toggle.removeClass('mode-real').addClass('mode-accelerated');
+		}
+	}
+}
+
+// Toggle handler for the link in the footer
+$('body').on('click', '#download-mode-toggle', function(e) {
+	e.preventDefault();
+	if (DOWNLOAD_SIMULATION_SPEEDUP <= 1) {
+		setDownloadSimulationSpeedup(100, true);
+	} else {
+		setDownloadSimulationSpeedup(1, true);
+	}
+});
+
+// Initialize UI label on page load
+$(function(){ setDownloadSimulationSpeedup(DOWNLOAD_SIMULATION_SPEEDUP, false); });
+// (no animation initializer — pulsating effect removed)
 
 function bytesFromFormattedSize(value) {
 	var match = String(value || '').trim().match(/^([\d.]+)\s*(Bytes|KB|MB|GB|TB)$/i);
