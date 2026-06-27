@@ -1741,6 +1741,7 @@ lwSong = new Howl({
 	html5: useHtml5AudioForLimeWire,
 	format: ['mp3'],
 	preload: true,
+	loop: true,
 	onloaderror: function(id, error) {
 		logLimeWireAudioDebug('song load error', {
 			songId: id,
@@ -1762,6 +1763,7 @@ lwSong = new Howl({
 logLimeWireAudioDebug('howl initialized', {
 	src: '/audio/limewire.mp3',
 	html5: useHtml5AudioForLimeWire,
+	loop: true,
 	userAgent: navigator.userAgent
 });
 

@@ -192,10 +192,16 @@ body.desktop.boot-after-bsod.boot-load:before {
   display: flex;
   align-items: center;
   gap: 5px;
+  width: 100%;
+  line-height: 14px;
+  white-space: normal;
 }
 
 .desktop .window .content .main_layer .split .left .search_parameters form .form_row.more_options input {
+  flex: 0 0 auto;
   width: auto;
+  height: auto;
+  margin: 0;
 }
 
 .desktop .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus {
@@ -824,6 +830,12 @@ body.desktop.boot-after-bsod.boot-load:before {
   margin: 0 0 5px;
 }
 
+.desktop .window.popup.sim-help-window a {
+  color: #0645ad;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .sim-help-spoiler {
   margin: 14px 0 0;
   padding: 10px;
@@ -1052,6 +1064,30 @@ body.desktop.compact_screen .window .content .main_layer .split .left .search_pa
   width: 100% !important;
   height: 22px !important;
   font-size: 12px !important;
+}
+
+body.desktop.compact_screen .window .content .main_layer .split .left .search_parameters form .form_row.more_options {
+  min-height: 18px !important;
+  margin-top: 2px !important;
+}
+
+body.desktop.compact_screen .window .content .main_layer .split .left .search_parameters form .form_row.more_options label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  line-height: 13px !important;
+  white-space: normal !important;
+}
+
+body.desktop.compact_screen .window .content .main_layer .split .left .search_parameters form .form_row.more_options input {
+  flex: 0 0 13px !important;
+  width: 13px !important;
+  height: 13px !important;
+  min-width: 13px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 body.desktop.compact_screen .window .content .main_layer .split .left .search_parameters .tips_to_avoid_virus {
