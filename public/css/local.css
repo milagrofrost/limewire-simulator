@@ -3,6 +3,29 @@ body.desktop {
   overflow-x: auto;
 }
 
+body.desktop.boot-after-bsod {
+  overflow: hidden !important;
+}
+
+body.desktop.boot-after-bsod.boot-black {
+  background: #000 !important;
+}
+
+body.desktop.boot-after-bsod.boot-black .window:not(.popup),
+body.desktop.boot-after-bsod.boot-desktop-wait .window:not(.popup),
+body.desktop.boot-after-bsod.boot-load .window:not(.popup) {
+  visibility: hidden !important;
+}
+
+body.desktop.boot-after-bsod.boot-load:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: url("/img/load.png") center / auto no-repeat;
+  pointer-events: none;
+}
+
 .desktop .window {
   display: block !important;
   margin-top: 8px;
@@ -79,31 +102,22 @@ body.desktop {
   align-items: center;
   gap: 6px;
   margin-right: 7px;
-  color: #777;
-  font-size: 24px;
-  font-weight: bold;
 }
 
-.desktop .window .content .top_navigation_tabs .right_logo img {
+.desktop .window .content .top_navigation_tabs .right_logo .logo-icon {
   height: 28px;
+  margin-right: 0;
+}
+
+.desktop .window .content .top_navigation_tabs .right_logo .logo-text {
+  height: 24px;
+  width: auto;
   margin-right: 0;
 }
 
 .desktop .window .content .main_layer .split .right .progress_wrap .progress_actions .action:before,
 .desktop.leaderboard .window .content .main_layer .split .right .score_actions .action:before {
   background: url("/img/limewire.png") center / contain no-repeat;
-}
-
-.desktop .window .content .top_navigation_tabs .right_logo strong {
-  display: inline-block;
-  height: 22px;
-  min-width: 56px;
-  border-radius: 11px;
-  background: #333;
-  color: #fff;
-  text-align: center;
-  line-height: 22px;
-  font-size: 13px;
 }
 
 .top_navigation_tabs .tabs .highscore {
@@ -525,12 +539,49 @@ body.desktop {
   justify-content: flex-end;
 }
 
+.desktop .window .content .bottom_footer .part.player .buttons a {
+  display: inline-block;
+  width: 16px;
+  height: 20px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: top;
+}
+
+.desktop .window .content .bottom_footer .part.player .buttons a:focus {
+  outline: 0;
+}
+
 .desktop .window .content .bottom_footer .part.player .bar {
   width: 124px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.desktop .window .content .bottom_footer .part.player .bar span {
+  display: inline-block;
+  min-width: 100%;
+  padding-left: 4px;
+  white-space: nowrap;
+}
+
+.desktop .window .content .bottom_footer .part.player.playing .bar span {
+  padding-left: 100%;
+  animation: sim-player-marquee 8s linear infinite;
 }
 
 .desktop .window .content .bottom_footer .part.player .buttons a.stop:before {
-  background: url("/img/stop.png") center / contain no-repeat;
+  background: url("/img/stop_audio.png") center / contain no-repeat;
+}
+
+@keyframes sim-player-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .sim-bsod {
@@ -820,19 +871,16 @@ body.desktop.compact_screen .window .content .top_navigation_tabs .tabs .tab.lib
 }
 
 body.desktop.compact_screen .window .content .top_navigation_tabs .right_logo {
-  font-size: 0 !important;
+  gap: 4px !important;
   margin-right: 4px !important;
 }
 
-body.desktop.compact_screen .window .content .top_navigation_tabs .right_logo img {
+body.desktop.compact_screen .window .content .top_navigation_tabs .right_logo .logo-icon {
   height: 23px !important;
 }
 
-body.desktop.compact_screen .window .content .top_navigation_tabs .right_logo strong {
+body.desktop.compact_screen .window .content .top_navigation_tabs .right_logo .logo-text {
   height: 19px !important;
-  min-width: 43px !important;
-  line-height: 19px !important;
-  font-size: 11px !important;
 }
 
 body.desktop.compact_screen .window .content .main_layer {
@@ -1050,7 +1098,6 @@ body.desktop.compact_screen .window .content .bottom_footer {
 
 body.desktop.compact_screen .window .content .bottom_footer .part.earth,
 body.desktop.compact_screen .window .content .bottom_footer .part.green_circle,
-body.desktop.compact_screen .window .content .bottom_footer .part.announcement,
 body.desktop.compact_screen .window .content .bottom_footer .part.upload_download .upload {
   display: none !important;
 }
@@ -1062,6 +1109,22 @@ body.desktop.compact_screen .window .content .bottom_footer .part.connection {
 
 body.desktop.compact_screen .window .content .bottom_footer .part.upload_download {
   width: 148px !important;
+}
+
+body.desktop.compact_screen .window .content .bottom_footer .part.announcement {
+  display: inline-block !important;
+  flex: 0 0 42px !important;
+  width: 42px !important;
+  padding: 0 4px !important;
+  text-align: center !important;
+}
+
+body.desktop.compact_screen .window .content .bottom_footer .part.announcement span,
+body.desktop.compact_screen .window .content .bottom_footer .part.announcement span a {
+  display: block !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: clip !important;
 }
 
 body.desktop.compact_screen .window .content .bottom_footer .part.player {

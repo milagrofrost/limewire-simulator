@@ -9,6 +9,13 @@
   <link rel="stylesheet" href="/css/local.css?v=simulator">
 </head>
 <body class="desktop">
+  <script>
+    try {
+      if (sessionStorage.getItem('limewire_play_startup_after_bsod') === '1') {
+        document.body.classList.add('boot-after-bsod', 'boot-black');
+      }
+    } catch (e) {}
+  </script>
   <input type="hidden" name="current_page" value="index">
 
   <div class="window">
@@ -35,9 +42,8 @@
           <div class="tab library">Library</div>
         </div>
         <div class="right_logo">
-          <img src="/img/limewire.png" alt="LimeWire">
-          <span>LimeWire</span>
-          <strong>PRO</strong>
+          <img class="logo-icon" src="/img/limewire.png" alt="">
+          <img class="logo-text" src="/img/limewire_text.png" alt="LimeWire">
         </div>
       </div>
 
@@ -48,7 +54,7 @@
               <div class="title">Select Search Type:</div>
               <div class="types">
                 <div class="type all strike disabled"><span>All Types</span></div>
-                <div class="type audio current"><span>Music</span></div>
+                <div class="type audio current"><span>Audio</span></div>
                 <div class="type images strike disabled"><span>Images</span></div>
                 <div class="type video strike disabled"><span>Films</span></div>
                 <div class="type documents strike disabled"><span>Documents</span></div>

@@ -59,6 +59,9 @@ Some useful searches:
 - **Upload footer**: the footer tracks active seeds and their current upload rate.
 - **Compact-window survival**: the LimeWire window stays accessible on small browser windows instead of disappearing.
 - **Era-appropriate chrome**: tabs, toolbar buttons, footer icons, legal notices, and the logo use local image assets from `public/img`.
+- **Embedded easter-song**: the built-in player will display and play a fixed easter-song title (`You Are a Pirate - LazyTown`) from `public/audio/limewire.mp3` when you hit play.
+- **Audio stutter for BSODs**: when a BSOD or crash overlay triggers, the player is intentionally seeked and briefly stuttered/looped for dramatic effect.
+- **Typos / leetspeak in bait titles**: some bait/virus results intentionally contain typos, leetspeak, or odd separators to feel like spammy file shares.
 
 ## Project Layout
 

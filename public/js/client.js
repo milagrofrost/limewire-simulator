@@ -175,11 +175,12 @@ function setDownloadSimulationSpeedup(value, save) {
 	}
 	var $toggle = $('body').find('#download-mode-toggle');
 	if ($toggle.length) {
+		var compactLabel = $('body').hasClass('compact_screen');
 		if (DOWNLOAD_SIMULATION_SPEEDUP <= 1) {
-			$toggle.text('Mode: Real-time (dial-up)');
+			$toggle.text(compactLabel ? '0x' : 'Mode: Real-time (dial-up)');
 			$toggle.removeClass('mode-accelerated').addClass('mode-real');
 		} else {
-			$toggle.text('Mode: ' + DOWNLOAD_SIMULATION_SPEEDUP + 'x (accelerated)');
+			$toggle.text(compactLabel ? DOWNLOAD_SIMULATION_SPEEDUP + 'x' : 'Mode: ' + DOWNLOAD_SIMULATION_SPEEDUP + 'x (accelerated)');
 			$toggle.removeClass('mode-real').addClass('mode-accelerated');
 		}
 	}
@@ -197,6 +198,9 @@ $('body').on('click', '#download-mode-toggle', function(e) {
 
 // Initialize UI label on page load
 $(function(){ setDownloadSimulationSpeedup(DOWNLOAD_SIMULATION_SPEEDUP, false); });
+$(window).on('resize', function() {
+	setDownloadSimulationSpeedup(DOWNLOAD_SIMULATION_SPEEDUP, false);
+});
 // (no animation initializer — pulsating effect removed)
 
 function bytesFromFormattedSize(value) {
@@ -1013,10 +1017,14 @@ $.ajax({
 									
 				var row = '<div data-id="'+data[i].id+'" data-var="'+data[i].var+'" data-h="'+data[i].h+'" data-size-bytes="'+fileBytes+'" data-download-seconds="'+downloadSeconds+'" class="row '+alreadyDownloaded+'"><div class="cell quality"></div><div class="cell number"><span>'+numberToShow+'</span></div><div class="cell license"><span></span></div><div class="cell name"><span>'+data[i].title+'</span></div><div class="cell type"><span>'+data[i].ext+'</span></div><div class="cell size"><span>'+formatBytes(fileBytes)+'</span></div><div class="cell speed"><span>'+data[i].speed+'</span></div><div class="cell bitrate"><span>'+data[i].bitrate+'</span></div><div class="cell scroll"><span>&nbsp;</span></div></div>';
 				
-				setTimeout(function() {
-					if (renderBatch !== latestSearchRenderBatch) return;
-					resultsRows.append(row);
-				}, 220 + (i * 170));
+				// stagger insertion with some randomness so results feel more dynamic
+				(function(index, html) {
+					var delay = 220 + Math.floor(Math.random() * 1800) + (index * 40);
+					setTimeout(function() {
+						if (renderBatch !== latestSearchRenderBatch) return;
+						resultsRows.append(html);
+					}, delay);
+				})(i, row);
 			
 			});
 											
@@ -1594,22 +1602,206 @@ $.ajax({
 }
 
 var lwSong;
+var lwSongId = null;
+var lwSongStutterTimer;
+
+function logLimeWireAudioDebug(message, data) {
+	if (!window.console || typeof window.console.log !== 'function') {
+		return;
+	}
+
+	window.console.log('[limewire-audio]', message, data || {});
+}
+
+function stopLimeWirePlayerAudio() {
+	logLimeWireAudioDebug('stop requested', {
+		songId: lwSongId,
+		hasStutterTimer: !!lwSongStutterTimer
+	});
+
+	if (lwSongStutterTimer) {
+		clearInterval(lwSongStutterTimer);
+		lwSongStutterTimer = null;
+	}
+
+	if (lwSong) {
+		if (lwSongId !== null) {
+			lwSong.stop(lwSongId);
+		} else {
+			lwSong.stop();
+		}
+		lwSongId = null;
+	}
+}
+
+function getActiveLimeWireSound() {
+	if (!lwSong || lwSongId === null || typeof lwSong._soundById !== 'function') {
+		logLimeWireAudioDebug('active sound unavailable', {
+			hasSong: !!lwSong,
+			songId: lwSongId,
+			hasSoundById: !!(lwSong && typeof lwSong._soundById === 'function')
+		});
+		return null;
+	}
+
+	var activeSound = lwSong._soundById(lwSongId);
+	logLimeWireAudioDebug('active sound lookup', {
+		songId: lwSongId,
+		found: !!activeSound,
+		paused: activeSound ? activeSound._paused : null,
+		seek: activeSound ? activeSound._seek : null,
+		nodeCurrentTime: activeSound && activeSound._node ? activeSound._node.currentTime : null,
+		nodeReadyState: activeSound && activeSound._node ? activeSound._node.readyState : null
+	});
+
+	return activeSound;
+}
+
+window.stutterLimeWireAudioForBsod = function() {
+	logLimeWireAudioDebug('bsod stutter requested', {
+		songId: lwSongId,
+		playerPlayingClass: $('body').find('.part.player').hasClass('playing'),
+		howlerPlaying: !!(lwSong && lwSongId !== null && lwSong.playing(lwSongId))
+	});
+
+	if (!lwSong || lwSongId === null || !$('body').find('.part.player').hasClass('playing') || !lwSong.playing(lwSongId)) {
+		logLimeWireAudioDebug('bsod stutter skipped', {
+			hasSong: !!lwSong,
+			songId: lwSongId,
+			playerPlayingClass: $('body').find('.part.player').hasClass('playing')
+		});
+		return;
+	}
+
+	if (lwSongStutterTimer) {
+		clearInterval(lwSongStutterTimer);
+	}
+
+	var activeSound = getActiveLimeWireSound();
+	var useHtmlAudioNode = !!(activeSound && activeSound._node && typeof activeSound._node.currentTime === 'number');
+	var crashSeek = useHtmlAudioNode ? activeSound._node.currentTime : lwSong.seek(lwSongId);
+	if (typeof crashSeek !== 'number' || isNaN(crashSeek)) {
+		crashSeek = 0;
+	}
+
+	var stutterStart = Math.max(0, crashSeek - 0.3);
+	logLimeWireAudioDebug('bsod stutter starting', {
+		songId: lwSongId,
+		crashSeek: crashSeek,
+		stutterStart: stutterStart,
+		usingHtmlAudioNode: useHtmlAudioNode,
+		duration: useHtmlAudioNode ? activeSound._node.duration : lwSong.duration(lwSongId)
+	});
+
+	if (useHtmlAudioNode) {
+		activeSound._node.currentTime = stutterStart;
+	} else {
+		lwSong.seek(stutterStart, lwSongId);
+	}
+	lwSong.volume(0.7);
+
+	lwSongStutterTimer = setInterval(function() {
+		if (!lwSong || lwSongId === null || !$('body').find('.part.player').hasClass('playing')) {
+			clearInterval(lwSongStutterTimer);
+			lwSongStutterTimer = null;
+			return;
+		}
+		var stutterSound = getActiveLimeWireSound();
+		var useStutterHtmlAudioNode = !!(stutterSound && stutterSound._node && typeof stutterSound._node.currentTime === 'number');
+		if (useStutterHtmlAudioNode) {
+			var beforeResetCurrentTime = stutterSound._node.currentTime;
+			stutterSound._node.currentTime = stutterStart;
+			logLimeWireAudioDebug('bsod stutter reset node', {
+				songId: lwSongId,
+				stutterStart: stutterStart,
+				beforeResetCurrentTime: beforeResetCurrentTime,
+				afterResetCurrentTime: stutterSound._node.currentTime
+			});
+		} else {
+			var beforeResetSeek = lwSong.seek(lwSongId);
+			lwSong.seek(stutterStart, lwSongId);
+			logLimeWireAudioDebug('bsod stutter reset howler', {
+				songId: lwSongId,
+				stutterStart: stutterStart,
+				beforeResetSeek: beforeResetSeek,
+				afterResetSeek: lwSong.seek(lwSongId)
+			});
+		}
+	}, 300);
+};
+
+window.stopLimeWirePlayerAudio = stopLimeWirePlayerAudio;
 
 $(document).ready(function() {
 
 lwSong = new Howl({
-	src: ['downloads/limewire_song.mp3'],
-	html5: true
+	src: ['/audio/limewire.mp3'],
+	html5: false
 });
+logLimeWireAudioDebug('howl initialized', {
+	src: '/audio/limewire.mp3',
+	html5: false
+});
+
+try {
+	if (sessionStorage.getItem('limewire_play_startup_after_bsod') === '1') {
+		sessionStorage.removeItem('limewire_play_startup_after_bsod');
+		$('body').addClass('boot-after-bsod boot-black');
+		setTimeout(function() {
+			var startupSound = new Howl({
+				src: ['/audio/startup.mp3'],
+				html5: false,
+				volume: 0.8
+			});
+
+			startupSound.play();
+			$('body').removeClass('boot-black').addClass('boot-desktop-wait');
+			logLimeWireAudioDebug('startup sound played after bsod restart', {
+				src: '/audio/startup.mp3',
+				blackScreenDelayMs: 2000,
+				desktopDelayMs: 2000,
+				loadDelayMs: 2000
+			});
+
+			setTimeout(function() {
+				$('body').removeClass('boot-desktop-wait').addClass('boot-load');
+				logLimeWireAudioDebug('boot load screen shown after bsod restart', {
+					src: '/img/load.png'
+				});
+
+				setTimeout(function() {
+					$('body').removeClass('boot-after-bsod boot-load');
+					logLimeWireAudioDebug('boot window revealed after bsod restart');
+				}, 2000);
+			}, 2000);
+		}, 2000);
+	}
+} catch (e) {
+	logLimeWireAudioDebug('startup sound after bsod restart failed', {
+		error: e && e.message ? e.message : String(e)
+	});
+}
 
 });
 
 /* music player */$('body').on('click', '.player .play', function(event) {
 
-$('body').find('.part.player .bar span').text('Soulja Boy - LimeWire');
+event.preventDefault();
+$(this).blur();
+
+$('body').find('.part.player .bar span').text('You Are a Pirate - LazyTown');
 	
 if (!$(this).closest('.player').hasClass('playing')) {
-	lwSong.play();
+	if (lwSongStutterTimer) {
+		clearInterval(lwSongStutterTimer);
+		lwSongStutterTimer = null;
+	}
+	lwSong.volume(1);
+	lwSongId = lwSong.play();
+	logLimeWireAudioDebug('play clicked', {
+		songId: lwSongId,
+		playing: lwSong.playing(lwSongId)
+	});
 }
 
 $(this).closest('.player').removeClass('paused');
@@ -1619,8 +1811,21 @@ $(this).closest('.player').addClass('playing');
 
 $('body').on('click', '.player .pause', function(event) {
 
+event.preventDefault();
+$(this).blur();
+
 if (!$(this).closest('.player').hasClass('paused')) {
-	lwSong.pause();
+	if (lwSongStutterTimer) {
+		clearInterval(lwSongStutterTimer);
+		lwSongStutterTimer = null;
+	}
+	if (lwSongId !== null) {
+		logLimeWireAudioDebug('pause clicked', {
+			songId: lwSongId,
+			seekBeforePause: lwSong.seek(lwSongId)
+		});
+		lwSong.pause(lwSongId);
+	}
 }
 	
 $(this).closest('.player').removeClass('playing');
@@ -1630,12 +1835,15 @@ $(this).closest('.player').addClass('paused');
 
 $('body').on('click', '.player .stop', function(event) {
 
+event.preventDefault();
+$(this).blur();
+
 $('body').find('.part.player .bar span').text('LimeWire Media Player');
 
 $(this).closest('.player').removeClass('playing');
 $(this).closest('.player').removeClass('paused');
 
-lwSong.stop();	
+stopLimeWirePlayerAudio();	
 
 });
 

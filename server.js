@@ -34,6 +34,8 @@ const baseResults = [
   ['virus-b', 'virus', 'hash-virus-007', 'Metallica - One [RARE LIVE] mp3.scr', 'scr', 420, 'Cable', '128']
 ];
 
+let globalSearchCounter = 0;
+
 function nowSeconds() {
   return Math.floor(Date.now() / 1000);
 }
@@ -248,29 +250,36 @@ function legacyRows(query) {
   }));
 }
 
-function proceduralSearchResults(query) {
+function proceduralSearchResults(query, counter) {
   const q = String(query || 'unknown').trim() || 'unknown';
-  const rand = createRng(q);
+  // include an incremental counter so repeated searches vary
+  const rand = createRng(q + ':' + (counter || 0));
   const cleanBase = legacyRows(q).filter(row => row.var === 'clean');
   const queryTitle = q.replace(/\b\w/g, char => char.toUpperCase());
-  const resultCount = 17 + Math.floor(rand() * 6);
-  const cleanCount = Math.max(9, Math.floor(resultCount * (0.5 + rand() * 0.1)));
-  const junkCount = Math.max(4, Math.floor(resultCount * (0.2 + rand() * 0.1)));
+  const resultCount = 16 + Math.floor(rand() * 12);
+  const cleanCount = Math.max(8, Math.floor(resultCount * (0.45 + rand() * 0.2)));
+  const junkCount = Math.max(3, Math.floor(resultCount * (0.18 + rand() * 0.15)));
   const virusCount = Math.max(2, resultCount - cleanCount - junkCount);
   const rows = [];
 
+  // richer set of clean title templates to increase variety
+  const cleanTemplates = [
+    `${queryTitle}.mp3`,
+    `${queryTitle} [${pick(rand, ['128kbps', '192kbps', '320kbps'])}].mp3`,
+    `${queryTitle} (Radio Edit).mp3`,
+    `${queryTitle} live.mp3`,
+    `${queryTitle} acoustic.mp3`,
+    `0${(0) + 1} - ${queryTitle}.mp3`,
+    `${q.toLowerCase().replace(/\s+/g, '_')}.mp3`,
+    `${queryTitle} ${pick(rand, ['NapsterRip', 'Kazaa', 'LimeWireRip', 'BearShare', 'CD Rip', 'remix'])}.mp3`,
+    `${queryTitle} (Live at ${pick(rand, ['MadisonSquareGarden','TownHall','Bootleg'])}).mp3`,
+    `${queryTitle} feat ${pick(rand, ['VariousArtists','Unknown'])}.mp3`,
+    `${queryTitle} - ${pick(rand, ['Remix','Bootleg','Demo','Version'])}.mp3`
+  ];
+
   for (let i = 0; i < cleanCount; i++) {
     const base = cleanBase[i] || {
-      title: pick(rand, [
-        `${queryTitle}.mp3`,
-        `${queryTitle} [${pick(rand, ['128kbps', '192kbps', '320kbps'])}].mp3`,
-        `${queryTitle} (Radio Edit).mp3`,
-        `${queryTitle} live.mp3`,
-        `${queryTitle} acoustic.mp3`,
-        `0${(i % 9) + 1} - ${queryTitle}.mp3`,
-        `${q.toLowerCase().replace(/\s+/g, '_')}.mp3`,
-        `${queryTitle} ${pick(rand, ['NapsterRip', 'Kazaa', 'LimeWireRip', 'BearShare', 'CD Rip', 'remix'])}.mp3`
-      ]),
+      title: pick(rand, cleanTemplates),
       ext: 'mp3',
       size: 3000 + Math.floor(rand() * 6200),
       speed: pick(rand, ['Cable', 'DSL', 'T1', 'T3', 'T3 or Higher']),
@@ -305,6 +314,10 @@ function proceduralSearchResults(query) {
     () => [`${queryTitle} Complete Discography.zip`, 'zip', 28000 + Math.floor(rand() * 90000), pick(rand, ['DSL', 'T1', 'T3']), '', 'Large archive is tempting but suspicious.']
   ];
 
+  // additional junk variants for extra variety
+  junkTemplates.push(() => [`${queryTitle} [${pick(rand, ['MP3','WMA','FLAC'])}] crack.exe`, 'exe', 420 + Math.floor(rand() * 1200), pick(rand, ['Modem', 'Cable']), '', 'Suspicious installer disguised as cracked music.']);
+  junkTemplates.push(() => [`${queryTitle} - ${pick(rand, ['Tracklist','Info','Notes'])}.txt`, 'txt', 4 + Math.floor(rand() * 36), pick(rand, ['Modem', 'Cable']), '', 'Small text file; not audio.']);
+
   for (let i = 0; i < junkCount; i++) {
     const [title, ext, size, speed, bitrate, reason] = pick(rand, junkTemplates)();
     const risk = ext === 'mp3' && size < 1000 ? 65 + Math.floor(rand() * 20) : 35 + Math.floor(rand() * 35);
@@ -324,10 +337,16 @@ function proceduralSearchResults(query) {
 
   const baitPrefixes = ['NEW', 'FULL', 'REAL', 'HQ', 'RARE', 'UNRELEASED', 'NoSurvey', 'FAST', 'Xx'];
   const baitSuffixes = ['FREE', 'WORKING', 'FINAL', 'NO VIRUS', '100%', '2024', 'REPACK', 'ULTRA', 'HOT', 'zZz'];
+  // extend bait vocabulary for more permutations
+  baitPrefixes.push('!!!', 'MEGA', 'COMPLETE', 'SINGLE');
+  baitSuffixes.push('DOWNLOAD', 'INST', 'PATCH', 'NOSCAN');
   const extByType = ['exe', 'scr', 'pif', 'vbs', 'bat', 'com', 'cmd'];
   const separators = ['__', '--', '_-_', '..', '~~', '[]', '++', ' '];
+  separators.push('---', '..');
   const musicBait = ['full_album', 'discography', 'live', 'acoustic', 'rare_demo', 'unreleased', 'radio_edit', 'lyrics', '320kbps', 'remaster'];
+  musicBait.push('bonus_track', 'bitrate_bait', 'complete_rip');
   const wrappers = ['mp3', 'HQ', '128kbps', '320kbps', 'CDRip', 'NapsterRip', 'LimeWireRip'];
+  wrappers.push('FLAC', '320');
 
   for (let i = 0; i < virusCount; i++) {
     const sep = pick(rand, separators);
@@ -347,11 +366,20 @@ function proceduralSearchResults(query) {
       pick(rand, baitSuffixes)
     ].join(sep).replace(/\s+/g, pick(rand, ['_', '.', '-'])) + `${fakeMusicExt}.${ext}`;
 
+    // sometimes mangle the title (leet/typo) for extra variety
+    const maybeTypo = (text) => {
+      if (rand() > 0.88) return text.replace(/e/gi, '3').replace(/a/gi, '@').replace(/o/gi, '0');
+      if (rand() > 0.8) return text.replace(/e/gi, '3');
+      return text;
+    };
+
+    const finalTitle = maybeTypo(title);
+
     rows.push({
       id: `virus-${slug(q)}-${i + 1}`,
       var: 'virus',
-      h: `hash-virus-${stableHash(`${q}:virus:${i}:${title}`).toString(16)}`,
-      title,
+      h: `hash-virus-${stableHash(`${q}:virus:${i}:${finalTitle}`).toString(16)}`,
+      title: finalTitle,
       ext,
       size: Math.floor(48 + rand() * 1400),
       speed: pick(rand, ['T3 or Higher', 'T3', 'T1', 'Cable', 'DSL']),
@@ -394,7 +422,9 @@ async function handleApi(req, res, url) {
   }
 
   if (url.pathname === '/api/search' && req.method === 'POST') {
-    sendJson(res, 200, proceduralSearchResults(body.search));
+    // increment global counter so repeated searches produce new permutations
+    globalSearchCounter = (globalSearchCounter + 1) >>> 0;
+    sendJson(res, 200, proceduralSearchResults(body.search, globalSearchCounter));
     return;
   }
 

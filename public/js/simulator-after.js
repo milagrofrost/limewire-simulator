@@ -20,6 +20,12 @@
     document.body.appendChild(overlay);
 
     overlay.querySelector('.sim-bsod-restart').addEventListener('click', function() {
+      try {
+        sessionStorage.setItem('limewire_play_startup_after_bsod', '1');
+      } catch (e) {}
+      if (typeof window.stopLimeWirePlayerAudio === 'function') {
+        window.stopLimeWirePlayerAudio();
+      }
       location.reload();
     });
 
@@ -55,6 +61,9 @@
     overlay.querySelector('.sim-bsod-help').textContent = copy.help;
     overlay.querySelector('.sim-bsod-stop').textContent = copy.stop;
     overlay.classList.add('show');
+    if (typeof window.stutterLimeWireAudioForBsod === 'function') {
+      window.stutterLimeWireAudioForBsod();
+    }
     if (typeof resetActiveDownloads === 'function') {
       resetActiveDownloads();
     }

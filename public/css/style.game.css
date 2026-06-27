@@ -1464,7 +1464,7 @@ img, svg {
   opacity: 0.35;
 }
 .desktop .window .content .bottom_footer .part.player .buttons a.stop:before {
-  background: url("/img/stop.png");
+  background: url("/img/stop_audio.png");
   background-size: 10px;
   background-position: center;
   background-repeat: no-repeat;
