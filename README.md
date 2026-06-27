@@ -7,9 +7,16 @@ A local, self-contained LimeWire-style search and download simulator. It recreat
 
 Credit note: this project is a fan recreation inspired by the original LimeWire game that appeared in 2023. It was reconstructed from archived materials and is not affiliated with LimeWire LLC.
 
-The app does not contact LimeWire, Wayback, peers, or any external backend while running. Downloads are UI simulations only.
+The app does not contact LimeWire, Wayback, peers, or any external backend while running. Downloads are UI simulations only. The browser-side API simulator in `public/js/api-simulator.js` replaces the old `/api/*` server calls for static hosting.
 
 ## Run
+
+Static hosting:
+
+- Deploy the contents of `public/` to Cloudflare Pages or any static host.
+- No Node process, Worker, database, or server API is required.
+
+Local preview with the small convenience server:
 
 ```powershell
 node server.js
@@ -29,7 +36,7 @@ http://localhost:3000/?compact
 
 ## What To Try
 
-Search for a song or artist, select a result, and click **Download**. Searches generate a mix of plausible music files, junk files, tiny previews, fake archives, and executable files disguised as music.
+Search for a song or artist, select a result, and click **Download**. Searches generate a rotating mix of plausible music files, junk files, tiny previews, fake archives, and executable files disguised as music. Repeating a search does not show every possible permutation at once; results shift over time to feel like new peers are appearing.
 
 Some useful searches:
 
@@ -46,6 +53,7 @@ Some useful searches:
 - **Shared bandwidth**: multiple active downloads split the same simulated 56k connection instead of each getting its own full speed.
 - **Frustrating speed swings**: downloads randomly fluctuate, dip, queue, reconnect, or show `Need More Sources`.
 - **Slow search population**: results appear gradually instead of all at once, like an old client finding hosts.
+- **Rotating search permutations**: repeated searches draw from different generated title patterns instead of dumping every variant into one list.
 - **Bitrate bait**: some titles include `[128kbps]`, `[192kbps]`, `[320kbps]`, and similar labels.
 - **Suspicious result types**: searches include junk like lyrics files, cover art, playlists, corrupt MP3s, archives, and disguised executables.
 - **Virus payoff waits for completion**: virus mode triggers only after the bad download reaches 100%.
@@ -69,6 +77,7 @@ Some useful searches:
 - `public/index.html` - the simulator shell.
 - `public/css/style.game.css` - recovered base LimeWire Game stylesheet, patched for the local simulator.
 - `public/css/local.css` - local layout fixes, compact mode, icon overrides, legal notice styling, BSOD styling, and extra simulator effects.
+- `public/js/api-simulator.js` - client-side mock API for `/api/login`, `/api/start_game`, `/api/search`, `/api/confirm_download`, `/api/highscore`, and `/api/send_desktop_link` so the app works on static hosts.
 - `public/js/client.js` - main browser behavior for search, download simulation, shared 56k bandwidth, seeding, and scoring hooks.
 - `public/js/simulator.js` - local setup helpers, compact-screen detection, and search form behavior.
 - `public/js/simulator-after.js` - post-load behavior for BSODs and legal warning overlays.
