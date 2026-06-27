@@ -1604,6 +1604,8 @@ $.ajax({
 var lwSong;
 var lwSongId = null;
 var lwSongStutterTimer;
+var useHtml5AudioForLimeWire = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+	(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
 function logLimeWireAudioDebug(message, data) {
 	if (!window.console || typeof window.console.log !== 'function') {
@@ -1736,11 +1738,31 @@ $(document).ready(function() {
 
 lwSong = new Howl({
 	src: ['/audio/limewire.mp3'],
-	html5: false
+	html5: useHtml5AudioForLimeWire,
+	format: ['mp3'],
+	preload: true,
+	onloaderror: function(id, error) {
+		logLimeWireAudioDebug('song load error', {
+			songId: id,
+			error: error
+		});
+	},
+	onplayerror: function(id, error) {
+		logLimeWireAudioDebug('song play error', {
+			songId: id,
+			error: error
+		});
+		if (lwSong && typeof lwSong.once === 'function') {
+			lwSong.once('unlock', function() {
+				lwSong.play(id);
+			});
+		}
+	}
 });
 logLimeWireAudioDebug('howl initialized', {
 	src: '/audio/limewire.mp3',
-	html5: false
+	html5: useHtml5AudioForLimeWire,
+	userAgent: navigator.userAgent
 });
 
 try {
@@ -1750,7 +1772,8 @@ try {
 		setTimeout(function() {
 			var startupSound = new Howl({
 				src: ['/audio/startup.mp3'],
-				html5: false,
+				html5: useHtml5AudioForLimeWire,
+				format: ['mp3'],
 				volume: 0.8
 			});
 
@@ -1796,11 +1819,17 @@ if (!$(this).closest('.player').hasClass('playing')) {
 		clearInterval(lwSongStutterTimer);
 		lwSongStutterTimer = null;
 	}
+	if (window.Howler && Howler.ctx && Howler.ctx.state === 'suspended' && typeof Howler.ctx.resume === 'function') {
+		Howler.ctx.resume();
+	}
 	lwSong.volume(1);
 	lwSongId = lwSong.play();
 	logLimeWireAudioDebug('play clicked', {
 		songId: lwSongId,
-		playing: lwSong.playing(lwSongId)
+		playing: lwSong.playing(lwSongId),
+		html5: useHtml5AudioForLimeWire,
+		howlerState: window.Howler ? Howler.state : null,
+		audioContextState: window.Howler && Howler.ctx ? Howler.ctx.state : null
 	});
 }
 
