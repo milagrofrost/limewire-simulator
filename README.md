@@ -71,19 +71,6 @@ Some useful searches:
 - `public/js/simulator-after.js` - post-load behavior for BSODs and legal warning overlays.
 - `public/img/` - runtime image assets used by the interface.
 
-## Local API
-
-The server provides small mock endpoints so the archived game code can run locally:
-
-- `POST /api/login`
-- `POST /api/start_game`
-- `POST /api/search`
-- `GET /api/confirm_download`
-- `GET /api/highscore`
-- `POST /api/send_desktop_link`
-
-The search endpoint generates deterministic-ish LimeWire-style results from the search query. The confirm-download endpoint updates local score state and marks virus results.
-
 ## Notes
 
 This is a nostalgia simulator, not a downloader. It does not fetch files, connect to peers, install anything, or call remote services. All “downloads,” warnings, infections, legal notices, and transfer speeds are simulated in the browser.
