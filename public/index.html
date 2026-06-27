@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LimeWire Simulator</title>
+  <link rel="icon" href="/img/favicon-32x32.ico">
+  <link rel="stylesheet" href="/css/style.game.css">
+  <link rel="stylesheet" href="/css/local.css?v=simulator">
+</head>
+<body class="desktop">
+  <input type="hidden" name="current_page" value="index">
+
+  <div class="window">
+    <div class="window_header">
+      <div class="title"><span>LimeWire</span></div>
+      <div class="buttons"><a class="minimize"></a><a class="fullscreen"></a><a class="close"></a></div>
+    </div>
+    <div class="content">
+      <div class="top_navigation">
+        <a href="#"><span class="underline">F</span>ile</a>
+        <a href="#"><span class="underline">V</span>iew</a>
+        <a href="#"><span class="underline">N</span>avigation</a>
+        <a href="#"><span class="underline">R</span>esources</a>
+        <a href="#"><span class="underline">T</span>ools</a>
+        <a href="#"><span class="underline">F</span>ilters</a>
+        <a href="#"><span class="underline">H</span>elp</a>
+        <span class="logged_in_as" style="display:none"></span>
+      </div>
+
+      <div class="top_navigation_tabs">
+        <div class="tabs">
+          <div class="tab search current"><span class="term">Search</span></div>
+          <div class="tab monitor">Monitor</div>
+          <div class="tab library">Library</div>
+        </div>
+        <div class="right_logo">
+          <img src="/img/limewire.png" alt="LimeWire">
+          <span>LimeWire</span>
+          <strong>PRO</strong>
+        </div>
+      </div>
+
+      <div class="main_layer">
+        <div class="split">
+          <div class="left">
+            <div class="search_type">
+              <div class="title">Select Search Type:</div>
+              <div class="types">
+                <div class="type all strike disabled"><span>All Types</span></div>
+                <div class="type audio current"><span>Music</span></div>
+                <div class="type images strike disabled"><span>Images</span></div>
+                <div class="type video strike disabled"><span>Films</span></div>
+                <div class="type documents strike disabled"><span>Documents</span></div>
+                <div class="type programs strike disabled"><span>Programs</span></div>
+              </div>
+            </div>
+
+            <div class="search_parameters">
+              <div class="alerts"></div>
+              <span class="heading">Audio</span>
+              <form name="search_for_downloads">
+                <div class="form_row">
+                  <label for="search_for_downloads">Title</label>
+                  <input id="search_for_downloads" name="search_for_downloads[query]" type="text" placeholder="spoonman">
+                </div>
+                <div class="form_row">
+                  <label>Artist</label>
+                  <input name="search_for_downloads[artist]" type="text" placeholder="soundgarden">
+                </div>
+                <div class="form_row">
+                  <label>Album</label>
+                  <input name="search_for_downloads[album]" type="text">
+                </div>
+                <div class="form_row">
+                  <label>Genre</label>
+                  <select><option></option></select>
+                </div>
+                <div class="form_row">
+                  <label>License Type</label>
+                  <select><option></option></select>
+                </div>
+                <div class="form_row more_options">
+                  <label><input type="checkbox"> More Search Options</label>
+                </div>
+                <div class="form_row submit">
+                  <button type="submit">Search</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="right">
+            <div class="results_wrap">
+              <div class="results_screen">
+                <div class="columns">
+                  <div class="column quality">Quality</div>
+                  <div class="column number">#</div>
+                  <div class="column license">License</div>
+                  <div class="column name">Name</div>
+                  <div class="column type">Type</div>
+                  <div class="column size">Size</div>
+                  <div class="column speed">Speed</div>
+                  <div class="column bitrate">Bitrate</div>
+                  <div class="column scroll"></div>
+                </div>
+                <div class="rows"></div>
+                <div class="main_actions">
+                  <a href="#" class="action download" data-action="download">Download</a>
+                  <a href="#" class="action browse_host">Browse Host</a>
+                  <a href="#" class="action stop_search">Stop Search</a>
+                  <a href="#" class="action junk">Junk</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="progress_wrap">
+              <div class="downloads_label">Downloads</div>
+              <div class="progress_screen">
+                <div class="columns">
+                  <div class="column name">Name</div>
+                  <div class="column size">Size</div>
+                  <div class="column status">Status</div>
+                  <div class="column progress">Progress</div>
+                  <div class="column speed">Speed</div>
+                  <div class="column time">Time</div>
+                </div>
+                <div class="rows"></div>
+              </div>
+              <div class="progress_actions">
+                <a href="#" class="action cancel">Clear</a>
+                <a href="#" class="action resume">Resume</a>
+                <a href="#" class="action pause">Pause</a>
+                <a href="#" class="action preview">Launch</a>
+                <a href="#" class="action explore">Explore</a>
+                <a href="#" class="action clear_inactive">Clear Inactive</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom_footer">
+        <div class="part connection"><span>Turbo-Charged Connection</span></div>
+        <div class="part earth"><span></span></div>
+        <div class="part green_circle"><span>0</span></div>
+        <div class="part upload_download">
+          <span class="download"><i>0</i> @ 0 KB/s</span>
+          <span class="upload">0 @ 0 KB/s</span>
+        </div>
+        <div class="part announcement"><span><a href="#">A newer version is available, update?</a></span></div>
+        <div class="part player">
+          <div class="buttons"><a class="prev"></a><a class="play"></a><a class="pause"></a><a class="stop"></a><a class="next"></a></div>
+          <div class="bar"><span>LimeWire Media Player</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/jquery-1.10.2.min.js"></script>
+  <script src="/js/howler.core.js"></script>
+  <script src="/js/simulator.js"></script>
+  <script src="/js/client.js"></script>
+  <script src="/js/simulator-after.js"></script>
+</body>
+</html>
