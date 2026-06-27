@@ -1,5 +1,8 @@
 # LimeWire Simulator
 
+![LimeWire Simulator screenshot](images/image.png)
+
+
 A local, self-contained LimeWire-style search and download simulator. It recreates the feel of an early-2000s peer-to-peer client: suspicious search results, unreliable modem-era transfer speeds, bad file hygiene, legal scare screens, seeding guilt, and the occasional fake Windows disaster.
 
 Credit note: this project is a fan recreation inspired by the original LimeWire game that appeared in 2023. It was reconstructed from archived materials and is not affiliated with LimeWire LLC.
@@ -80,15 +83,6 @@ The server provides small mock endpoints so the archived game code can run local
 - `POST /api/send_desktop_link`
 
 The search endpoint generates deterministic-ish LimeWire-style results from the search query. The confirm-download endpoint updates local score state and marks virus results.
-
-## Archive Notes
-
-This started as a reconstruction from a Wayback Machine capture of `https://game.limewire.com`. The current app in `public/` is the runnable simulator; any extracted archive material is only provenance/reference material and is not needed by the running app.
-
-Useful source artifacts, when present:
-
-- `web.archive.org.har` - original browser HAR used during recovery.
-- `har_extracted/` - extracted archived files, if retained locally.
 
 ## Notes
 
