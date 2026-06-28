@@ -1,4 +1,6 @@
 :root {
+  /* Safe viewport values are set by public/js/simulator.js from URL params.
+     They let fullscreen kiosk installs reserve black bezel/unusable regions. */
   --safe-left: 0px;
   --safe-right: 0px;
   --safe-top: 0px;
@@ -25,6 +27,7 @@ body.desktop {
 }
 
 .safe-viewport {
+  /* The app renders inside this box; body stays black outside it. */
   position: fixed;
   left: var(--safe-left);
   top: var(--safe-top);
@@ -55,6 +58,7 @@ body.desktop.boot-after-bsod.boot-load .window:not(.popup) {
 }
 
 body.desktop.boot-after-bsod.boot-load:before {
+  /* Restart load screen must honor the same safe viewport as the app. */
   content: "";
   position: fixed;
   left: var(--safe-left);
@@ -665,6 +669,7 @@ body.desktop.boot-after-bsod.boot-load:before {
 }
 
 .sim-bsod {
+  /* Fake OS overlays are fixed to the safe viewport, not the raw browser. */
   display: none;
   position: fixed;
   left: var(--safe-left);
@@ -992,6 +997,7 @@ body.desktop.boot-after-bsod.boot-load:before {
 }
 
 body.desktop.compact_screen {
+  /* Compact mode is triggered from safe viewport dimensions in simulator.js. */
   min-width: 0 !important;
   min-height: 100vh !important;
   overflow: hidden !important;

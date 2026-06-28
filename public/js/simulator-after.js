@@ -1,4 +1,6 @@
 (function() {
+  // Post-load simulator effects. This file intentionally patches a few globals
+  // from client.js so old game-over flows can trigger the newer fake OS screens.
   var helpGimmicks = [
     'Default 100x dial-up acceleration: by default the simulator speeds up transfers 100x so downloads complete quickly; click the footer Mode link to switch to real-time speeds.',
     '56k modem math: file sizes are converted into real estimated download times over a 56k line.',
@@ -284,6 +286,8 @@
 
   window.showLegalWarning = showLegalWarning;
 
+  // client.js defines the original gameOverPopup(). Keep this override last so
+  // malware downloads route to the BSOD while other legacy calls stay harmless.
   window.gameOverPopup = function(type) {
     if (type === 'virus') {
       showBsod('virus');

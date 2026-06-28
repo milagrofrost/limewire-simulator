@@ -83,13 +83,32 @@ Some useful searches:
 
 - `server.js` - dependency-free local HTTP server and mock API endpoints.
 - `public/index.html` - the simulator shell.
-- `public/css/style.game.css` - recovered base LimeWire Game stylesheet, patched for the local simulator.
-- `public/css/local.css` - local layout fixes, compact mode, icon overrides, legal notice styling, BSOD styling, and extra simulator effects.
+- `public/css/style.game.css` - recovered base LimeWire Game stylesheet. Treat it as the historical/base layer.
+- `public/css/local.css` - active local overrides: safe viewport, compact mode, icon overrides, legal notice styling, BSOD styling, and extra simulator effects.
 - `public/js/api-simulator.js` - client-side mock API for `/api/login`, `/api/start_game`, `/api/search`, `/api/confirm_download`, `/api/highscore`, and `/api/send_desktop_link` so the app works on static hosts.
 - `public/js/client.js` - main browser behavior for search, download simulation, shared 56k bandwidth, seeding, and scoring hooks.
-- `public/js/simulator.js` - local setup helpers, compact-screen detection, and search form behavior.
-- `public/js/simulator-after.js` - post-load behavior for BSODs and legal warning overlays.
+- `public/js/simulator.js` - local setup helpers, safe viewport / compact-screen detection, and search form behavior.
+- `public/js/simulator-after.js` - post-load behavior for help, BSODs, idle crashes, legal warning overlays, and the `gameOverPopup` override.
 - `public/img/` - runtime image assets used by the interface.
+
+## Maintainer Notes
+
+- The safe viewport system is a first-class layout concept for fullscreen kiosk/PyForma installs. Keep bezel-related layout in `public/js/simulator.js` and `public/css/local.css`; avoid adding one-off `window.innerWidth` / `window.innerHeight` checks elsewhere.
+- `public/css/style.game.css` still contains recovered archive-era styles for pages/popups that are not part of the current single-screen simulator. Do not aggressively delete from this file without visual regression testing.
+- `public/css/local.css` intentionally overrides the base stylesheet heavily. Compact mode is fragile because it squeezes a fixed-size XP-style app into a much smaller safe viewport.
+- `public/js/client.js` is the highest-risk file. It owns old site helpers, search UI, downloads, shared 56k timing, legal triggers, seeding, scoring, and audio player behavior in one global scope.
+- `public/js/simulator-after.js` intentionally patches `window.gameOverPopup` so virus downloads show the fake BSOD instead of the old game-over popup.
+- `server.js` and `public/js/api-simulator.js` duplicate much of the mock API/search generation. The browser-side API simulator is what matters for Cloudflare Pages/static hosting.
+- The debug logs prefixed with `[limewire-audio]` are intentional and useful for mobile/audio issues.
+
+## Future Changes
+
+- Layout, safe viewport, compact mode: start in `public/js/simulator.js` and `public/css/local.css`.
+- Search result generation: update `public/js/api-simulator.js` for static hosting, and mirror important changes into `server.js` only if you still rely on server API routes locally.
+- Download speed, seeding, legal thresholds, junk/confetti, and shared 56k behavior: edit the simulator state/functions near the top of `public/js/client.js`.
+- Help window, legal scare screens, BSOD copy, idle BSOD timing: edit `public/js/simulator-after.js`.
+- Audio player, startup sound after BSOD restart, and BSOD stutter: edit the audio section near the bottom of `public/js/client.js`.
+- Visual assets: keep images in `public/img/` and audio in `public/audio/`.
 
 ## Notes
 

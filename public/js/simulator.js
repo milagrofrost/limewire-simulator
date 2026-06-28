@@ -2,6 +2,9 @@
   const SIMULATED_WINDOW_WIDTH = 1050;
   const SIMULATED_WINDOW_HEIGHT = 740;
   const WINDOW_FIT_PADDING = 16;
+  // Kiosk/PyForma support: the browser is fullscreen, but the physical display
+  // may hide pixels behind a bezel. All compact/layout decisions should use the
+  // safe viewport below rather than raw window dimensions.
   const SAFE_MARGIN_KEYS = {
     left: ['safeLeft', 'safe-left', 'safe_left', 'left'],
     right: ['safeRight', 'safe-right', 'safe_right', 'right'],

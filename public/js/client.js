@@ -157,6 +157,9 @@ return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 
 const MODEM_56K_BYTES_PER_SECOND = 56000 / 8;
+// Core simulator state. These names are intentionally global because
+// simulator-after.js calls resetActiveDownloads() and overrides gameOverPopup().
+// Be careful when renaming or wrapping this block.
 var DOWNLOAD_SIMULATION_SPEEDUP = parseInt(localStorage.getItem('download_simulation_speedup')) || 100;
 var activeDownloads = {};
 var sharedDownloadTimer = null;
@@ -186,7 +189,7 @@ function setDownloadSimulationSpeedup(value, save) {
 	}
 }
 
-// Toggle handler for the link in the footer
+// Footer mode link: compact mode deliberately shortens this label to 100x/0x.
 $('body').on('click', '#download-mode-toggle', function(e) {
 	e.preventDefault();
 	if (DOWNLOAD_SIMULATION_SPEEDUP <= 1) {
@@ -201,7 +204,7 @@ $(function(){ setDownloadSimulationSpeedup(DOWNLOAD_SIMULATION_SPEEDUP, false); 
 $(window).on('resize', function() {
 	setDownloadSimulationSpeedup(DOWNLOAD_SIMULATION_SPEEDUP, false);
 });
-// (no animation initializer — pulsating effect removed)
+// (no animation initializer: pulsating effect removed)
 
 function bytesFromFormattedSize(value) {
 	var match = String(value || '').trim().match(/^([\d.]+)\s*(Bytes|KB|MB|GB|TB)$/i);
@@ -499,6 +502,8 @@ function startSharedDownloadTimer() {
 			return;
 		}
 
+		// All active downloads share one fake 56k line. The multiplier is
+		// intentionally erratic to mimic the frustrating old-client feel.
 		var totalLineBytesPerSecond = fluctuateLineSpeed(downloads.length);
 		refreshFooterDownloadSpeed(totalLineBytesPerSecond);
 		var shareStates = downloads.map(function(download) {
@@ -1604,6 +1609,7 @@ $.ajax({
 var lwSong;
 var lwSongId = null;
 var lwSongStutterTimer;
+// iOS Safari needs HTML5 audio for reliable user-gesture playback.
 var useHtml5AudioForLimeWire = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
 	(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
@@ -1659,6 +1665,8 @@ function getActiveLimeWireSound() {
 	return activeSound;
 }
 
+// BSOD audio stutter intentionally uses Howler's internal sound node so the loop
+// happens near the current playback position, not from the beginning of the song.
 window.stutterLimeWireAudioForBsod = function() {
 	logLimeWireAudioDebug('bsod stutter requested', {
 		songId: lwSongId,
@@ -1769,6 +1777,8 @@ logLimeWireAudioDebug('howl initialized', {
 
 try {
 	if (sessionStorage.getItem('limewire_play_startup_after_bsod') === '1') {
+		// Fake Windows restart sequence after a BSOD:
+		// black screen -> startup sound/desktop wait -> LimeWire load image -> app.
 		sessionStorage.removeItem('limewire_play_startup_after_bsod');
 		$('body').addClass('boot-after-bsod boot-black');
 		setTimeout(function() {
