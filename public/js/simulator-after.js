@@ -42,6 +42,7 @@
       '<div class="sim-help-main">',
       '<h1>What is this?</h1>',
       '<p>This is a browser-based LimeWire nostalgia simulator. Nothing is actually downloaded, installed, shared, or reported. The search results, downloads, warnings, crashes, and transfer speeds are simulated UI events.</p>',
+      '<p><strong>Disclaimer:</strong> This is an unofficial fan-made nostalgia simulator. It is not affiliated with, endorsed by, sponsored by, or connected to LimeWire, LimeWire GmbH, or any original creators or rights holders. All trademarks belong to their respective owners.</p>',
       '<h2>How to interact</h2>',
       '<ul>',
       '<li>Search for a song or artist, then select a row and click Download.</li>',
