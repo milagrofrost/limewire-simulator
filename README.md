@@ -34,6 +34,14 @@ For small displays, compact mode is automatic. You can also force it with:
 http://localhost:3000/?compact
 ```
 
+For kiosk displays with hidden bezel areas, use safe viewport margins. The browser stays fullscreen, unused regions render black, and the simulator lays itself out inside the usable area:
+
+```text
+http://localhost:3000/?safeLeft=71&safeRight=71&safeTop=0&safeBottom=0
+```
+
+Short aliases like `?left=71&right=71` also work.
+
 ## What To Try
 
 Search for a song or artist, select a result, and click **Download**. Searches generate a rotating mix of plausible music files, junk files, tiny previews, fake archives, and executable files disguised as music. Repeating a search does not show every possible permutation at once; results shift over time to feel like new peers are appearing.

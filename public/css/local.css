@@ -1,6 +1,39 @@
+:root {
+  --safe-left: 0px;
+  --safe-right: 0px;
+  --safe-top: 0px;
+  --safe-bottom: 0px;
+  --safe-width: calc(100vw - var(--safe-left) - var(--safe-right));
+  --safe-height: calc(100vh - var(--safe-top) - var(--safe-bottom));
+  --safe-width-px: 100vw;
+  --safe-height-px: 100vh;
+}
+
+html,
+body {
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  background: #000;
+}
+
 body.desktop {
+  min-width: 0 !important;
   min-height: 100vh;
-  overflow-x: auto;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+.safe-viewport {
+  position: fixed;
+  left: var(--safe-left);
+  top: var(--safe-top);
+  width: var(--safe-width);
+  height: var(--safe-height);
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  background: url("/img/windows_bliss.jpeg") center / cover no-repeat;
 }
 
 body.desktop.boot-after-bsod {
@@ -8,6 +41,10 @@ body.desktop.boot-after-bsod {
 }
 
 body.desktop.boot-after-bsod.boot-black {
+  background: #000 !important;
+}
+
+body.desktop.boot-after-bsod.boot-black .safe-viewport {
   background: #000 !important;
 }
 
@@ -20,7 +57,10 @@ body.desktop.boot-after-bsod.boot-load .window:not(.popup) {
 body.desktop.boot-after-bsod.boot-load:before {
   content: "";
   position: fixed;
-  inset: 0;
+  left: var(--safe-left);
+  right: var(--safe-right);
+  top: var(--safe-top);
+  bottom: var(--safe-bottom);
   z-index: 9999;
   background: url("/img/load.png") center / auto no-repeat;
   pointer-events: none;
@@ -31,10 +71,35 @@ body.desktop.boot-after-bsod.boot-load:before {
   margin-top: 8px;
 }
 
+.desktop .window .window_header {
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.desktop .window .window_header .title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.desktop .window .window_header .buttons {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.desktop .window .window_header .buttons a {
+  flex: 0 0 23px;
+}
+
 @media screen and (max-width: 1000px) {
   body.desktop {
-    min-width: 560px !important;
-    min-height: 480px !important;
+    min-width: 0 !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  .safe-viewport {
     overflow: auto !important;
   }
 
@@ -602,7 +667,10 @@ body.desktop.boot-after-bsod.boot-load:before {
 .sim-bsod {
   display: none;
   position: fixed;
-  inset: 0;
+  left: var(--safe-left);
+  right: var(--safe-right);
+  top: var(--safe-top);
+  bottom: var(--safe-bottom);
   z-index: 9999;
   background: #0000aa;
   color: #fff;
@@ -642,7 +710,10 @@ body.desktop.boot-after-bsod.boot-load:before {
 .sim-legal-warning {
   display: none;
   position: fixed;
-  inset: 0;
+  left: var(--safe-left);
+  right: var(--safe-right);
+  top: var(--safe-top);
+  bottom: var(--safe-bottom);
   z-index: 10000;
   align-items: center;
   justify-content: center;
@@ -658,7 +729,7 @@ body.desktop.boot-after-bsod.boot-load:before {
 
 .sim-legal-panel {
   width: min(100%, 980px);
-  max-height: calc(100vh - 48px);
+  max-height: calc(var(--safe-height) - 48px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -670,7 +741,7 @@ body.desktop.boot-after-bsod.boot-load:before {
 .sim-legal-image {
   display: block;
   max-width: 100%;
-  max-height: calc(100vh - 110px);
+  max-height: calc(var(--safe-height) - 110px);
   width: auto;
   height: auto;
   object-fit: contain;
@@ -751,7 +822,10 @@ body.desktop.boot-after-bsod.boot-load:before {
 .sim-help-overlay {
   display: none;
   position: fixed;
-  inset: 0;
+  left: var(--safe-left);
+  right: var(--safe-right);
+  top: var(--safe-top);
+  bottom: var(--safe-bottom);
   z-index: 10003;
   align-items: center;
   justify-content: center;
@@ -768,8 +842,8 @@ body.desktop.boot-after-bsod.boot-load:before {
   position: relative !important;
   left: auto !important;
   top: auto !important;
-  width: min(640px, calc(100vw - 36px)) !important;
-  height: min(540px, calc(100vh - 36px)) !important;
+  width: min(640px, calc(var(--safe-width) - 36px)) !important;
+  height: min(540px, calc(var(--safe-height) - 36px)) !important;
   margin: 0 !important;
   z-index: 10004;
   border-width: 1px !important;
@@ -865,7 +939,7 @@ body.desktop.boot-after-bsod.boot-load:before {
 .sim-leecher-warning {
   position: fixed;
   top: 45%;
-  left: 100vw;
+  left: calc(var(--safe-left) + var(--safe-width));
   z-index: 10001;
   color: #000;
   font: 900 96px/1 Arial Black, Impact, Arial, sans-serif;
@@ -879,7 +953,10 @@ body.desktop.boot-after-bsod.boot-load:before {
 
 .sim-confetti {
   position: fixed;
-  inset: 0;
+  left: var(--safe-left);
+  right: var(--safe-right);
+  top: var(--safe-top);
+  bottom: var(--safe-bottom);
   z-index: 10002;
   pointer-events: none;
   overflow: hidden;
@@ -899,7 +976,7 @@ body.desktop.boot-after-bsod.boot-load:before {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-100vw - 100%));
+    transform: translateX(calc(-1 * var(--safe-width) - 100%));
   }
 }
 
@@ -910,19 +987,19 @@ body.desktop.boot-after-bsod.boot-load:before {
   }
   100% {
     opacity: 0;
-    transform: translateY(108vh) rotate(760deg);
+    transform: translateY(calc(var(--safe-height) + 8vh)) rotate(760deg);
   }
 }
 
 body.desktop.compact_screen {
-  min-width: 560px !important;
-  min-height: 480px !important;
-  overflow: auto !important;
+  min-width: 0 !important;
+  min-height: 100vh !important;
+  overflow: hidden !important;
 }
 
 body.desktop.compact_screen .window {
-  width: max(560px, 100vw) !important;
-  height: max(480px, 100vh) !important;
+  width: max(560px, var(--safe-width)) !important;
+  height: max(480px, var(--safe-height)) !important;
   margin: 0 !important;
   border-radius: 0 !important;
 }
@@ -938,6 +1015,18 @@ body.desktop.compact_screen .window .window_header {
   height: 28px !important;
 }
 
+body.desktop.compact_screen .window .window_header .buttons {
+  height: 23px !important;
+  padding-top: 2px !important;
+  gap: 2px !important;
+}
+
+body.desktop.compact_screen .window .window_header .buttons a {
+  width: 23px !important;
+  height: 23px !important;
+  flex: 0 0 23px !important;
+}
+
 body.desktop.compact_screen .window .window_header .title {
   font-size: 12px !important;
 }
@@ -945,7 +1034,7 @@ body.desktop.compact_screen .window .window_header .title {
 body.desktop.compact_screen .window .window_header .title span {
   top: 7px !important;
   display: block !important;
-  max-width: calc(100vw - 90px) !important;
+  max-width: calc(var(--safe-width) - 90px) !important;
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
@@ -1110,9 +1199,9 @@ body.desktop.compact_screen .window .content .main_layer .split .right .results_
 
 body.desktop.compact_screen .window .content .main_layer .split .right .results_wrap .results_screen {
   width: calc(100% - 8px) !important;
-  height: calc(100% - 7px) !important;
+  height: calc(100% - 58px) !important;
   top: 4px !important;
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 body.desktop.compact_screen .window .content .main_layer .split .right .results_wrap .results_screen .columns,
@@ -1174,7 +1263,7 @@ body.desktop.compact_screen .window .content .main_layer .split .right .progress
 }
 
 body.desktop.compact_screen .window .content .main_layer .split .right .results_wrap .results_screen .rows {
-  height: calc(100% - 73px) !important;
+  height: calc(100% - 22px) !important;
 }
 
 body.desktop.compact_screen .window .content .main_layer .split .right .results_wrap .results_screen .rows .row {
@@ -1183,14 +1272,23 @@ body.desktop.compact_screen .window .content .main_layer .split .right .results_
 }
 
 body.desktop.compact_screen .window .content .main_layer .split .right .results_wrap .results_screen .main_actions {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: calc(100% + 5px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
   height: 51px !important;
   padding-top: 6px !important;
   gap: 8px !important;
+  background: transparent !important;
 }
 
 body.desktop.compact_screen .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action {
   width: 66px !important;
   font-size: 11px !important;
+  float: none !important;
 }
 
 body.desktop.compact_screen .window .content .main_layer .split .right .results_wrap .results_screen .main_actions .action:before {
@@ -1246,7 +1344,15 @@ body.desktop.compact_screen .window .content .bottom_footer {
   right: 0 !important;
   bottom: 0 !important;
   height: 24px !important;
+  align-items: center !important;
   overflow: hidden !important;
+}
+
+body.desktop.compact_screen .window .content .bottom_footer .part {
+  height: 22px !important;
+  line-height: 22px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 body.desktop.compact_screen .window .content .bottom_footer .part.earth,
@@ -1257,7 +1363,25 @@ body.desktop.compact_screen .window .content .bottom_footer .part.upload_downloa
 
 body.desktop.compact_screen .window .content .bottom_footer .part.connection {
   width: 150px !important;
-  padding-left: 35px !important;
+  padding-left: 30px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}
+
+body.desktop.compact_screen .window .content .bottom_footer .part.connection span {
+  font-size: 0 !important;
+}
+
+body.desktop.compact_screen .window .content .bottom_footer .part.connection span:after {
+  content: "Turbo-Charged";
+  font-size: 11px !important;
+}
+
+body.desktop.compact_screen .window .content .bottom_footer .part.connection span:before {
+  width: 22px !important;
+  height: 22px !important;
+  left: 4px !important;
+  top: 0 !important;
 }
 
 body.desktop.compact_screen .window .content .bottom_footer .part.upload_download {
