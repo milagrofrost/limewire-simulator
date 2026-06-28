@@ -670,6 +670,7 @@ body.desktop.boot-after-bsod.boot-load:before {
 
 .sim-bsod {
   /* Fake OS overlays are fixed to the safe viewport, not the raw browser. */
+  box-sizing: border-box;
   display: none;
   position: fixed;
   left: var(--safe-left);
@@ -680,9 +681,9 @@ body.desktop.boot-after-bsod.boot-load:before {
   background: #0000aa;
   color: #fff;
   font-family: Consolas, "Lucida Console", monospace;
-  font-size: 21px;
-  line-height: 1.35;
-  padding: 48px 64px;
+  font-size: clamp(14px, calc(var(--safe-height) / 28), 21px);
+  line-height: 1.28;
+  padding: clamp(18px, calc(var(--safe-height) * 0.075), 48px) clamp(24px, calc(var(--safe-width) * 0.06), 64px);
 }
 
 .sim-bsod.show {
@@ -694,7 +695,7 @@ body.desktop.boot-after-bsod.boot-load:before {
 }
 
 .sim-bsod p {
-  margin-bottom: 24px;
+  margin-bottom: clamp(12px, calc(var(--safe-height) * 0.03), 24px);
 }
 
 .sim-bsod strong {
@@ -703,8 +704,8 @@ body.desktop.boot-after-bsod.boot-load:before {
 }
 
 .sim-bsod-restart {
-  margin-top: 12px;
-  padding: 4px 10px;
+  margin-top: clamp(6px, calc(var(--safe-height) * 0.015), 12px);
+  padding: clamp(2px, calc(var(--safe-height) * 0.006), 4px) clamp(6px, calc(var(--safe-width) * 0.01), 10px);
   border: 2px solid #fff;
   background: #0000aa;
   color: #fff;
